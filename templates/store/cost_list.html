@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Yard List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Yard</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Cost List</h4>
+                <a href="{% url 'create_cost' %}">
+                    <button id="payment-button" type="submit" class="btn btn-lg btn-outline-primary float-right">Create Overhead Cost</button></a>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table" style="overflow-x:auto;">  
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Name</th>
+                                <th>Short Form</th>
+                                <th>Rate</th>
+                                <th>MISC</th>
+                                <th>Update</th>
+                                <th></th>
+                                <th>Delete</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in cost %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ field.name }}</td>
+                                <td>{{ field.shortform }}</td>
+                                <td>{{ field.rate }}</td>
+                                <td>{{ field.misc }}</td>
+                                <td><a href="{% url 'update_cost' field.id  %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info btn-block">Update</button></a><td>
+                                <td><a href="{% url 'delete_cost' field.id  %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info btn-block">Delete</button></a><td>  
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div> <!-- /.col-lg-8 -->
+
+
+</div>
+{% endblock content %}

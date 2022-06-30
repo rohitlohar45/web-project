@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Supplier List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Supplier</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body inline">
+                <h4>Supplier List</h4>
+                <a href="{% url 'create-supplier' %}">
+                    <button id="payment-button" type="submit" class="btn btn-lg btn-outline-primary float-right">Create
+                        Supplier</button></a>
+                <!--  -->
+            </div>
+            <div class="card-body">
+                <div class="table-stats order-table" style="overflow-x:auto;">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>Supplier Id</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Contact</th>
+                                <th>Phone Number</th>
+                                <th>Update</th>
+                                <th></th>
+                                <th>Delete</th>
+                                <th></th>
+                                <th>Create Yard</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if supplier %}
+                            {% for supplier in supplier %}
+                            <tr>
+                                <td>{{ supplier.id}}</td>
+                                <td><a href="{% url 'supplier' supplier.id %}">{{ supplier.name }}</a></td>
+                                <td>{{ supplier.address }}</td>
+                                <td>{{ supplier.contact }}</td>
+                                <td>{{ supplier.mob_no }}</td>
+                                <td><a href="{% url 'update_supplier' supplier.id  %}"><button id="payment-button"
+                                            type="submit" class="btn btn-sm btn-info btn-block">Update</button></a>
+                                <td>
+                                <td><a href="{% url 'delete_supplier' supplier.id  %}"><button id="payment-button"
+                                            type="submit" class="btn btn-sm btn-info btn-block">Delete</button></a>
+                                <td>
+                                <td><a href="{% url 'create-yard' %}"><button id="payment-button" type="submit"
+                                            class="btn btn-sm btn-info btn-block">Create Yard</button></a>
+                                <td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Export Details</td>
+                                <td>{{ supplier.ename }}</td>
+                                <td></td>
+                                <td>{{ supplier.econtact }}</td>
+                                <td>{{ supplier.emob_no }}</td>
+                            </tr> -->
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td>No Supplier Data</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div> <!-- /.col-lg-8 -->
+
+
+</div>
+{% endblock content %}

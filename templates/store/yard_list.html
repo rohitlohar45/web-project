@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Yard List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Yard</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Yard List </h4>
+                <a href="{% url 'create-yard' %}">
+                    <button id="payment-button" type="submit" class="btn btn-lg btn-outline-primary float-right">Create Yard</button></a>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Supplier Name</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for yard in yards %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ yard.name }}</td>
+                                <td>{{ yard.address }}</td>
+                                <td>{{ yard.supplier}}</td>
+                                <td><a href="{% url 'update_yard' yard.id %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info btn-block">Update</button></a></td>
+                                <td><a href="{% url 'delete_yard' yard.id %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info btn-block">Delete</button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div> <!-- /.col-lg-8 -->
+
+
+</div>
+{% endblock content %}

@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Create Supplier{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class=" m-0">
+            <div class="-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Supplier</a></li>
+                            <li class="active">Create</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="">
+    <div class="-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Create Supplier</strong>
+            </div>
+            <div class="card-body">
+                <div id="pay-invoice">
+                    <div class="card-body">
+                        <form action="#" method="post" novalidate="novalidate">
+                            {% csrf_token %}
+                            <p><mark>{{ error }}</mark></p>
+                            
+                            <div class="form-group ">
+                                <label for="name" class="control-label mb-1 ">Name</label>
+                                {{ form.name }}
+                                <label for="address" class="control-label mb-1 ">Address</label>
+                                {{ form.address }}
+                            </div>
+                            <div class="form-group ">
+                                <label for="contact" class="control-label mb-1 ">Contact</label>
+                                {{ form.contact }}
+                                <div style="margin: 10px;"><mark>{{form.mob_no.errors}}</mark></div>
+                                <label for="mob_no" class="control-label mb-1 ">Mobile Number</label>
+                                {{ form.mob_no }}
+                            </div>
+                            <div class="form-group ">
+                                <div style="margin: 10px;"><mark>{{form.email.errors}}</mark></div>
+                                <label for="email" class="control-label mb-1 ">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="row">
+                                <h1 style="margin-bottom:20px ;">Export Details</h1>
+                                <div class="form-group col">
+                                    <div style="margin: 10px;"><mark>{{form.ename.errors}}</mark></div>
+                                    <label for="ename" class="control-label mb-1 ">Name</label>
+                                    {{ form.ename }}
+                                    <div style="margin: 10px;"><mark>{{form.econtact.errors}}</mark></div>
+                                        <label for="econtact" class="control-label mb-1 ">Contact Person</label>
+                                    {{ form.econtact }}
+                                </div>
+                                <div class="form-group col">
+                                    <div style="margin: 10px;"><mark>{{form.mob_no.errors}}</mark></div>
+                                    <label for="emob_no" class="control-label mb-1 ">Mobile Number</label>
+                                    {{ form.emob_no }}
+                                    <div style="margin: 10px;"><mark>{{form.email.errors}}</mark></div>
+                                    <label for="eemail" class="control-label mb-1 ">Email</label>
+                                    {{ form.eemail }}
+                                </div>
+                            </div>
+                            <div>
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                    <span id="payment-button-amount">Create Supplier</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div> <!-- .card -->
+
+    </div>
+    <!--/.-->
+</div>
+{% endblock content %}

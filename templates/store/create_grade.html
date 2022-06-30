@@ -1,0 +1,649 @@
+{% extends 'base/base.html' %}
+<style>
+</style>
+{% block title %}Create Metal{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Grade</a></li>
+                            <li class="active">Create</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Create Grade</strong>
+            </div>
+            <div class="card-body">
+                <!-- Credit Card -->
+                <div id="pay-invoice">
+                    <div class="card-body">
+                        <form action="#" method="post" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name" class="control-label mb-1">Name</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="form-group">
+                                <label for="details" class="control-label mb-1">Details</label>
+                                {{ form.details }}
+                            </div>
+                            <div class="form-group">
+                                <label for="gradegrp" class="control-label mb-1">Grade Group 1</label>
+                                {{ form.gradegrp }}
+                            </div>
+                            <div class="form-group">
+                                <label for="misc" class="control-label mb-1">Miscellaneous</label>
+                                {{ form.misc }}
+                            </div>
+                            <section id="section1">
+                                <center>
+                                    <button type="button" class="btn btn-success" id="add-metal"
+                                    style="margin: 20px;">Add Metal</button>
+                                </center>
+                                <div class="form-group row">
+                                    <div class="form-group col">
+                                        <label for="metaln" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalcn" class="control-label mb-1">Cost</label>
+                                        {{ form.metalcn }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <div class="form-group col">
+                                        <label for="metalnn" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metalnn }}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group row" id="1" style="display:none">
+                                    <div class="form-group col" style="width:50%;">
+                                        <label for="metaln1" class="control-label mb-1">Metal</label>
+                                        {{ form.metaln1}}
+                                    </div>
+                                    <div class="form-group col" style="width:50%;">
+                                        <label for="metalc1" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc1 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group row" id="2" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln2" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln2}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc2" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc2 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group row" id="3" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal3" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln3}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc3" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc3 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="4" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln4" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln4}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc4" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc4 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="5" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln5" class="control-label mb-1" ">Metal</label>
+                                        {{ form.metaln5}}
+                                    </div>
+                                    <div class=" form-group col">
+                                            <label for="metalc5" class="control-label mb-1">Cost</label>
+                                            {{ form.metalc5 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="6" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln6" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln6}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc6" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc6 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="7" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln7" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln7}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc7" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc7 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="8" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln8" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln8}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc8" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc8 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="9" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln9" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln9}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc9" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc9 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="10" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln10" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln10}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc10" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc10 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="11" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln11" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln11}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc11" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc11 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="12" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metaln12" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln12}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc12" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc12 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="13" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal13" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln13}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc13" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc13 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="14" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal14" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln14}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc14" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc14 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="15" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal15" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln15}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc15" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc15 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="16" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal16" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln16}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc16" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc16 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="17" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal17" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln17}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc17" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc17 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="18" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal18" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln18}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc18" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc18 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="19" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal19" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln19}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc19" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc19 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="20" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="metal20" class="control-label mb-1"
+                                            style="display:flex">Metal</label>
+                                        {{ form.metaln20}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="metalc20" class="control-label mb-1">Cost</label>
+                                        {{ form.metalc20 }}
+                                    </div>
+
+                                </div>
+                                <!-- <div class="input-group-btn"> -->
+                                <!-- <input type="button" name="Add Metal" id=""> -->
+                                <!-- </div> -->
+                                <!-- <p id="add-metal">Add Metal</p> -->
+
+                            </section>
+                            <section id="section2">
+                                <center>
+                                    <h3 style="margin: 15px;">Type of Product</h3>
+                                </center>
+                                <div class="from-group row" style="margin-bottom:20px;">
+                                    <label for="typeo" class="control-label mb-1 col">Type</label>
+                                    {{ form.typeo }}
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="recovery" class="control-label mb-1 col">Recovery</label>
+                                    {{ form.recovery }}
+                                </div>
+
+                            </section>
+                            <aside id="aside">
+                                <center>
+                                    <button type="button" class="btn btn-success" id="add-cost" style="margin: 20px;">Add
+                                        Overhead</button>
+                                </center>
+                                <div class="form-group row">
+                                    <div class="form-group col">
+                                        <label for="costn" class="control-label mb-1 costs"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn}}
+                                    </div>
+                                    {{form.costn.error}}
+                                    <div class="form-group col">
+                                        <label for="costc" class="control-label mb-1">Cost</label>
+                                        <!-- <input id="costc" class="control-input mb-1" type="text"> -->
+                                        {{ form.costc }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="form-group col">
+                                        <label for="costnn" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costnn }}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costcn" class="control-label mb-1">Cost</label>
+                                        {{ form.costcn }}
+                                    </div>
+                                </div>
+                                <div class="form-group" id="101" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn1" class="control-label mb-1">Overhead</label>
+                                        {{ form.costn1}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc1" class="control-label mb-1">Cost</label>
+                                        {{ form.costc1 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="102" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn2" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn2}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc2" class="control-label mb-1">Cost</label>
+                                        {{ form.costc2 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="103" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost3" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn3}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc3" class="control-label mb-1">Cost</label>
+                                        {{ form.costc3 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="104" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn4" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn4}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc4" class="control-label mb-1">Cost</label>
+                                        {{ form.costc4 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="105" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn5" class="control-label mb-1" ">Overhead</label>
+                                            {{ form.costn5}}
+                                        </div>
+                                        <div class=" form-group col">
+                                            <label for="costc5" class="control-label mb-1">Cost</label>
+                                            {{ form.costc5 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="106" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn6" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn6}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc6" class="control-label mb-1">Cost</label>
+                                        {{ form.costc6 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="107" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn7" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn7}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc7" class="control-label mb-1">Cost</label>
+                                        {{ form.costc7 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="108" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn8" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn8}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc8" class="control-label mb-1">Cost</label>
+                                        {{ form.costc8 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="109" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn9" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn9}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc9" class="control-label mb-1">Cost</label>
+                                        {{ form.costc9 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="110" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn10" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn10}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc10" class="control-label mb-1">Cost</label>
+                                        {{ form.costc10 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="111" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn11" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn11}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc11" class="control-label mb-1">Cost</label>
+                                        {{ form.costc11 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="112" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="costn12" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn12}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc12" class="control-label mb-1">Cost</label>
+                                        {{ form.costc12 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="113" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost13" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn13}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc13" class="control-label mb-1">Cost</label>
+                                        {{ form.costc13 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="114" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost14" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn14}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc14" class="control-label mb-1">Cost</label>
+                                        {{ form.costc14 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="115" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost15" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn15}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc15" class="control-label mb-1">Cost</label>
+                                        {{ form.costc15 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="116" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost16" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn16}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc16" class="control-label mb-1">Cost</label>
+                                        {{ form.costc16 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="117" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost17" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn17}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc17" class="control-label mb-1">Cost</label>
+                                        {{ form.costc17 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="118" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost18" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn18}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc18" class="control-label mb-1">Cost</label>
+                                        {{ form.costc18 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="119" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost19" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn19}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc19" class="control-label mb-1">Cost</label>
+                                        {{ form.costc19 }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="120" style="display:none">
+                                    <div class="form-group col">
+                                        <label for="cost20" class="control-label mb-1"
+                                            style="display:flex">Overhead</label>
+                                        {{ form.costn20}}
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="costc20" class="control-label mb-1">Cost</label>
+                                        {{ form.costc20 }}
+                                    </div>
+
+                                </div>
+                                
+                                <!-- <div class="input-group-btn"> -->
+                                <!-- <input type="button" name="Add Overhead" id=""> -->
+                                <!-- </div> -->
+                                <!-- <p id="add-cost">Add Overhead</p> -->
+                            </aside>
+                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <span id="payment-button-amount">Create Grade</span>
+                            </button>
+                        </form>
+
+                    </div>
+                    <!-- <div class="form-group" id="container" style="display: inline; width: 30%;">
+                                
+                            </div>
+                            <button class="btn-lg" type="button" id="click" onclick="create">Click Me</button> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+<script type="text/javascript">
+
+</script>
+
+<script>
+
+
+
+</script>
+{% endblock content %}
