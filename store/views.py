@@ -1,4 +1,5 @@
 from multiprocessing import context
+import os
 import re
 from urllib import request
 from django.http import JsonResponse
@@ -9,6 +10,7 @@ from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django import forms as formsm
 import json
+from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 
 
@@ -17,19 +19,23 @@ error2 = ""
 
 from users.models import User
 from .models import (  
+    Quality,
     Supplier,
     Yard,
-    cost, grade, metal,
+    cost,
+    grade, metal,
 )
 from .forms import (
     CostUpdateform,
     GradeUpdateform,
     # MakeAndModelForm,
     MetalUpdateform,
+    QualityForm,
     SupplierForm,
     YardForm,
     SupplierUpdateForm,
-    YardUpdateForm, CostForm, GradeForm, MetalForm
+    YardUpdateForm, CostForm, GradeForm, MetalForm,
+    # demoForm
 )
 
 # Supplier views
@@ -170,58 +176,6 @@ def create_yard_form(request):
 
 
 
-
-# def create_yard(request):
-#     forms = YardForm()
-#     if request.method == 'POST':
-#         forms = YardForm(request.POST)
-#         if forms.is_valid():
-#             supplier = forms.cleaned_data['supplier']
-#             name = forms.cleaned_data['name']
-#             address = forms.cleaned_data['address']
-#             Yard.objects.create(
-#                 supplier=supplier,
-#                 name=name,
-#                 address=address,
-#             )
-#             return redirect('detail-yard')
-#     context = {
-#         'form': forms
-#     }
-#     return render(request, 'store/create_yard.html', context)
-
-
-# class YardListView(ListView):
-#     model = Yard
-#     template_name = 'store/yard_list.html'
-#     context_object_name = 'yards'
-
-
-
-# def update_yard(request, pk):
-# 	queryset = Yard.objects.get(id=pk)
-# 	form = YardUpdateForm(instance=queryset)
-# 	if request.method == 'POST':
-# 		form = YardUpdateForm(request.POST, instance=queryset)
-# 		if form.is_valid():
-# 			form.save()
-# 			return redirect('detail-yard')
-
-# 	context = {
-# 		'form':form
-# 	}
-# 	return render(request, 'store/create_yard.html', context)    
-
-
-# def delete_yard(request, pk):
-# 	queryset = Yard.objects.get(id=pk)
-# 	if request.method == 'POST':
-# 		queryset.delete()
-# 		return redirect('detail-yard')
-# 	return render(request, 'store/delete_items.html')    
-
-
-
 class CostListView(ListView):
     model = cost
     template_name = 'store/cost_list.html'
@@ -280,10 +234,9 @@ def create_metal(request):
         if forms.is_valid():
             name = forms.cleaned_data['name']
             shortform = forms.cleaned_data['shortform']
-            rate = forms.cleaned_data['rate']
             misc = forms.cleaned_data['misc']
             metal.objects.create(
-                name=name, shortform=shortform, rate=rate, misc=misc
+                name=name, shortform=shortform, misc=misc
             )
             return redirect('metal-list')
     context = {
@@ -471,16 +424,22 @@ def create_grade(request):
 # def jsondata(request):
 
 
+
+def show_grade(request):
+    gradeobj = grade.objects.all()
+    context = {'grade':gradeobj}
+    return render(request, './tp.html',context)
+
     
 #     return JsonResponse(data,safe = False)
 
-# def json():
-#     data = list(cost.objects.values_list("id","rate"))
-#     a_file = open("./data.json", "w")
-#     json.dump(data, a_file)
-#     a_file.close()
-#     with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-#         dest.write(source.read()) 
+
+data = list(cost.objects.values_list("id","rate"))
+a_file = open("./data.json", "w")
+json.dump(data, a_file)
+a_file.close()
+with open("data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
+    dest.write(source.read()) 
 
 
 def update_grade(request,pk):
@@ -491,37 +450,24 @@ def update_grade(request,pk):
     context = {'form': form}
 
     if form.is_valid():
+        # print(form)
         obj = form.save(commit=False)
         obj.save()
+        return redirect('grade-list')
+    else:
+        print(form.errors.as_json())    
 
-        context = {'form': form}
+    context = {'form': form}
         
     return render(request, 'store/create_grade.html',context)
 
 
+# data = serializers.serialize("json", grade.objects.all())
+# print(data)
+# a_file = open("./data_grade.json", "w")
+# json.dump(data, a_file)
+# a_file.close()
 
-
-data = list(cost.objects.values_list("name","rate"))
-a_file = open("./data.json", "w")
-json.dump(data, a_file)
-a_file.close()
-with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-    dest.write(source.read())
-with open("./data.json", "r") as source, open("C:/Users/ROHIT/Downloads/scrape-rate-calculator-main/scrape-rate-calculator-main/static/assets/js/data.json", "w") as dest:
-    dest.write(source.read())    
-# def update_grade(request, pk):
-# 	queryset = grade.objects.get(id=pk)
-# 	form = GradeUpdateform(instance=queryset)
-# 	if request.method == 'POST':
-# 		form = GradeUpdateform(request.POST, instance=queryset)
-# 		if form.is_valid():
-# 			form.save()
-# 			return redirect('grade-list')
-   
-# 	context = {
-# 		'form':form
-# 	}
-# 	return render(request, 'store/create_grade.html', context)    
 
 
 def delete_grade(request, pk):
@@ -539,8 +485,157 @@ class GradeListView(ListView):
 
 
 
+def Quality_View(request):
+    forms = QualityForm()
+    gradeobj = grade.objects.all()
+    if request.method == 'POST':
+        forms = QualityForm(request.POST)
+        if forms.is_valid():
+            supplier = forms.cleaned_data['supplier']
+            yard = forms.cleaned_data['yard']
+            grade1 = forms.cleaned_data['grade']
+            metalw = forms.cleaned_data['metalw']
+            metalw1 = forms.cleaned_data['metalw1']
+            metalw2 = forms.cleaned_data['metalw2']
+            metalw3 = forms.cleaned_data['metalw3']
+            metalw4 = forms.cleaned_data['metalw4']
+            metalw5 = forms.cleaned_data['metalw5']
+            metalw6 = forms.cleaned_data['metalw6']
+            metalw7 = forms.cleaned_data['metalw7']
+            metalw8 = forms.cleaned_data['metalw8']
+            metalw9 = forms.cleaned_data['metalw9']
+            metalw10 = forms.cleaned_data['metalw10']
+            metalw11 = forms.cleaned_data['metalw11']
+            metalw12 = forms.cleaned_data['metalw12']
+            metalw13 = forms.cleaned_data['metalw13']
+            metalw14 = forms.cleaned_data['metalw14']
+            metalw15 = forms.cleaned_data['metalw15']
+            metalw16 = forms.cleaned_data['metalw16']
+            metalw17 = forms.cleaned_data['metalw17']
+            metalw18 = forms.cleaned_data['metalw18']
+            metalw19 = forms.cleaned_data['metalw19']
+            metalw20 = forms.cleaned_data['metalw20']
 
 
+            Quality.objects.create(
+                supplier = supplier, yard=yard, grade=grade1,
+                metalw=metalw, metalw1=metalw1, metalw2=metalw2,
+                 metalw3=metalw3, metalw4=metalw4, metalw5=metalw5, metalw6=metalw6, 
+                 metalw7=metalw7, metalw8=metalw8, metalw9=metalw9, metalw10=metalw10,
+                 metalw11=metalw11, metalw12=metalw12, metalw13=metalw13,  metalw14=metalw14, metalw15=metalw15,
+                 metalw16=metalw16, metalw17=metalw17, metalw18=metalw18, metalw19=metalw19,
+                 metalw20=metalw20
+            )
+            return redirect('supplier-list')
+        else:
+            print(forms.errors.as_json())    
+    context = {
+        'form': forms,
+    }
+    return render(request, 'store/quality.html', context)
+
+
+def create_quality(request):
+    qualitys = Quality.objects.all()
+    form = QualityForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            quality = form.save(commit=False)
+            quality.save()
+            return redirect("detail-quality", pk=quality.id)
+        else:
+            return render(request, "partials/quality_form.html", context={
+                "form": form
+            })
+
+    context = {
+        "form": form,
+        "qualitys": qualitys,
+        "suppliers": Supplier
+    }
+
+    return render(request, "store/create_quality.html", context)
+
+
+def update_quality(request, pk):
+    quality = Quality.objects.get(id=pk)
+    form = QualityForm(request.POST or None, instance=quality)
+
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("detail-quality", pk=quality.id)
+
+    context = {
+        "form": form,
+        "quality": quality
+    }
+
+    return render(request, "partials/quality_form.html", context)
+
+
+def delete_quality(request, pk):
+    quality = get_object_or_404(Quality, id=pk)
+
+    if request.method == "POST":
+        quality.delete()
+        return HttpResponse("")
+
+    return HttpResponseNotAllowed(
+        [
+            "POST",
+        ]
+    )
+
+
+def detail_quality(request, pk):
+    quality = get_object_or_404(Quality, id=pk)
+    context = {
+        "quality": quality
+    }
+    return render(request, "partials/quality_detail.html", context)
+
+
+def create_quality_form(request):
+    form = QualityForm()
+    context = {
+        "form": form
+    }
+    return render(request, "partials/quality_form.html", context)
+ 
+
+
+
+JSONSerializer = serializers.get_serializer("json")
+json_serializer = JSONSerializer()
+json_serializer.serialize(grade.objects.all())
+data = json_serializer.getvalue()
+
+with open("./static/assets/js/data_grade.json","w") as out:
+    json_serializer.serialize(grade.objects.all(), stream=out)
+
+
+# with open("./data_grade.json", "r") as source, open("./static/assets/js/data_grade.json", "w") as dest:
+#     dest.write(source.read())     
+
+
+
+data = list(cost.objects.values_list("name","rate"))
+a_file = open("./data.json", "w")
+json.dump(data, a_file)
+a_file.close()
+with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
+    dest.write(source.read())  
+
+
+
+data = list(Yard.objects.values_list("supplier","name","id"))
+a_file = open("./yard.json","w")
+json.dump(data,a_file)
+a_file.close()
+with open("./yard.json","r") as source, open("./static/assets/js/yard.json","w") as dest:
+    dest.write(source.read())
 
 
 

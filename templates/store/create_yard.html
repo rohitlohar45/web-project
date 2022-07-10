@@ -37,32 +37,11 @@
                 <strong class="card-title">Create Yard for {{supplier.name}}</strong>
             </div>
             <div class="card-body">
-                <!-- Credit Card -->
                 <div id="pay-invoice">
                     <div class="card-body inline">
-                            
-                        <!-- <form action="#" method="post" novalidate="novalidate">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="name" class="control-label mb-1">Name</label>
-                                {{ form.name }}
-                            </div>
-                            <div class="form-group">
-                                <label for="address" class="control-label mb-1">Address</label>
-                                {{ form.address }}
-                            </div>
-                            <div class="form-group">
-                                <label for="supplier" class="control-label mb-1">Supplier</label>
-                                {{ form.supplier }}
-                            </div>
-                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                <span id="payment-button-amount">Create Yard</span>
-                            </button>
-                    </div>
-                    </form> -->
                     <div class="card-body inline">
                         <h1 class="card-title"><strong>Supplier Name: {{ supplier.name}}</strong></h1>
-                        <button type="button" hx-get="{% url 'create-yard-form' %}" hx-target="#bookforms" hx-swap="beforeend"
+                        <button type="button" hx-get="{% url 'create-yard-form' %}" hx-target="#yardforms" hx-swap="beforeend"
                             class="btn btn-lg btn-outline-primary float-right">
                             Add Yard
                         </button>
@@ -70,7 +49,7 @@
                 </div>
                 
                 
-                <div id="bookforms" class="py-5 mt-5"></div>
+                <div id="yardforms" class="py-5 mt-5"></div>
                 
                 <div class="mt-5 py-5 border-t border-gray-100">
                     {% for yard in yards %}

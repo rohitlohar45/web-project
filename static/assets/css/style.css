@@ -435,7 +435,7 @@ canvas {
   .progress-box .por-txt {
     font-size: 13px;
     padding-bottom: 5px; }
-
+/* 
 .order-table {
   position: relative; }
   .order-table:after, .order-table:before {
@@ -444,15 +444,15 @@ canvas {
     top: 0px;
     height: 37px;
     width: 10px;
-    background: #e8e9ef; }
-  .order-table:after {
+    background: #e8e9ef; } */
+  /* .order-table:after {
     right: -1px; }
   .order-table:before {
     left: -1px; }
   .order-table tr th {
     background: #e8e9ef; }
   .order-table tr td:last-child, .order-table tr th:last-child {
-    text-align: right; }
+    text-align: left; }
   .order-table tr:last-child td {
     border: none; }
   .order-table .badge {
@@ -463,7 +463,7 @@ canvas {
   .order-table .badge-complete {
     background: #00c292; }
   .order-table .badge-pending {
-    background: #fb9678; }
+    background: #fb9678; } */
 
 .messenger-box {
   padding-top: 15px; }

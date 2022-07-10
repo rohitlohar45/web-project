@@ -139,59 +139,59 @@ canvas {
     }
 }
 
-.order-table {
-    position: relative;
+// .order-table {
+//     // position: relative;
 
-    &:after,
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0px;
-        height: 37px;
-        width: 10px;
-        background: #e8e9ef;
-    }
+//     &:after,
+//     // &:before {
+//     //     content: "";
+//     //     position: absolute;
+//     //     top: 0px;
+//     //     height: 37px;
+//     //     width: 10px;
+//     //     background: #e8e9ef;
+//     // }
 
-    &:after {
-        right: -1px;
-    }
+//     &:after {
+//         right: -1px;
+//     }
 
-    &:before {
-        left: -1px;
-    }
+//     // &:before {
+//     //     left: -1px;
+//     // }
 
-    tr {
-        th {
-            background: #e8e9ef;
-        }
+//     tr {
+//         // th {
+//         //     background: #e8e9ef;
+//         // }
 
-        td:last-child,
-        th:last-child {
-            text-align: right;
-        }
+//         td:last-child,
+//         th:last-child {
+//             text-align: left;
+//         }
 
-        &:last-child {
-            td {
-                border: none;
-            }
-        }
-    }
+//         &:last-child {
+//             td {
+//                 border: none;
+//             }
+//         }
+//     }
 
-    .badge {
-        color: white;
-        padding: 10px;
-        text-transform: uppercase;
-        font-weight: normal;
-    }
+//     .badge {
+//         color: white;
+//         padding: 10px;
+//         text-transform: uppercase;
+//         font-weight: normal;
+//     }
 
-    .badge-complete {
-        background: $flat-color-1;
-    }
+//     .badge-complete {
+//         background: $flat-color-1;
+//     }
 
-    .badge-pending {
-        background: $flat-color-4;
-    }
-}
+//     .badge-pending {
+//         background: $flat-color-4;
+//     }
+// }
 
 
 
@@ -1315,7 +1315,7 @@ header .form-inline {
 
         .middle {
             clear: both;
-            position: relative;
+            // position: relative;
             height: 80px;
             color: #333648;
 
@@ -1450,7 +1450,7 @@ header .form-inline {
     .card-body {
         float: left;
         padding: 1.25em;
-        position: relative;
+        // position: relative;
         width: 100%;
     }
 
@@ -1627,12 +1627,13 @@ header .form-inline {
         th,
         td {
             border: none;
-            border-bottom: 1px solid #e8e9ef;
+            // border-bottom: 1px solid #e8e9ef;
             color: #868e96;
             font-size: 12px;
+            width: fit-content;
             font-weight: normal;
             padding: .75em 1.25em;
-            text-transform: uppercase;
+            // text-transform: uppercase;
 
             img {
                 margin-right: 10px;

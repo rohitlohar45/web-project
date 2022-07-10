@@ -1,0 +1,1146 @@
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+
+<html class="no-js" lang="">
+<!--<![endif]-->
+{% load static %}
+{% load bootstrap5 %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/cs-skin-elastic.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/css/bootstrap-theme.min' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="/assets/css/bootstrap-5.0.2-dist/bootstrap.css"> -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-5.0.2-dist/bootstrap.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.5.0"
+        integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+        crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" /> -->
+    <!-- <script src="https://unpkg.com/htmx.org@1.5.0"
+        integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+        crossorigin="anonymous"></script> -->
+    <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- <script src="https://unpkg.com/htmx.org@1.5.0"
+        integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+        crossorigin="anonymous"></script> -->
+        <!-- <script src="https://unpkg.com/unpoly@2.5.0/unpoly.min.js"></script> -->
+        
+        <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+
+        .traffic-chart {
+            min-height: 335px;
+        }
+
+        #flotPie1 {
+            height: 150px;
+        }
+
+        #flotPie1 td {
+            padding: 3px;
+        }
+
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+
+        #cellPaiChart {
+            height: 160px;
+        }
+
+        #inline-form {
+            padding: 10px;
+            align-items: center;
+            padding-right: 10px;
+            text-align: left;
+            margin-left: -50px;
+        }
+
+        #inline-form {
+            width: 15vw;
+            margin-bottom: 10px;
+            font-weight: bolder;
+
+        }
+
+        #div {
+            display: table;
+            width: 100%;
+        }
+
+        #section1 {
+            width: 25%;
+            display: table-cell;
+        }
+
+
+        select{
+            background-color: white;
+            color: #323232;
+            border: 1px solid rgba(90, 89, 89, 0.286);
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            width: 150px;
+        }
+        
+
+        #section2{
+            padding: 80px;
+            display: table-cell;
+            width: 35%;
+        }
+
+        #aside {
+            width: 40%;
+            display: table-cell;
+        }
+        /* #metalw{
+          size: 100px; 
+        } */
+
+        @media (max-width: 600px) {
+            #section1 {
+                display: block;
+                /* height: 300px; */
+                width: 100%;
+            }
+            #section2{
+                display: block;
+                width: 100%;
+            }
+
+            #aside {
+                display: block;
+                /* height: 150px; */
+                width: 100%;
+            }
+        }
+
+        /* #inline-form,
+        input {
+            width: 40vw;
+            margin-left: -10px;
+            margin-bottom: 10px;
+        } */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+window.addEventListener("load", (event) => {
+
+    function readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(rawFile.responseText);
+    }
+
+//     fields = [
+//             'name','details','gradegrp','misc','metalc','costc','metaln','typeo','recovery','metalcn','metalnn',
+//             'metaln1','metalc1','metaln2','metalc2','metaln3','metalc3','metaln4','metalc4','metaln5','metalc5',
+//             'metaln6','metalc6','metaln7','metalc7','metaln8','metalc8','metaln9','metalc9','metaln10','metalc10',
+//             'metaln11','metalc11','metaln12','metalc12','metaln13','metalc13','metaln14','metalc14','metaln15','metalc15',
+//             'metaln16','metalc16','metaln17','metalc17','metaln18','metalc18','metaln19','metalc19','metaln20','metalc20',
+// ]
+
+    let url = '/static/assets/js/data.json'
+    let gradeurl = '/static/assets/js/data_grade.json'
+    let yardurl = '/static/assets/js/yard.json'
+    var room = 1;
+    cmetal = 1;
+    m = 101;
+
+    htmx.onLoad(function(content){
+        array = ['c',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+        
+        var supplier = document.getElementById('id_supplier')
+            supplier.addEventListener('change', function(evt) {
+                var supplierValue = supplier.value
+                readTextFile(yardurl, function(text) {
+                    var data = JSON.parse(text);
+                    var options = "<option>SELECT</option>";
+                    // console.log(data);
+                    if (supplierValue.length == 0) document.getElementById("id_yard").innerHTML = options;
+                    for (let i = 0; i < data.length; i++) {
+                        if(data[i][0]==supplier.value){
+                            var option = document.createElement("option");
+                            var value = data[i][2]
+                            // console.log("This is $(2)" );
+                            options += `<option value=${value}>` + data[i][1] + "</option>";
+                            console.log(`<option value=${value}>`);
+                        }
+                        document.getElementById("id_yard").innerHTML = options;
+                    }
+                    
+                        // var yard = document.getElementById('id_yard')
+                        // var option = document.createElement("option");
+                        // option.setAttribute('id','option')
+                        // for (var i = 0; i < data.length; i++) {
+                        //     if(data[i][0]==supplier.value){
+                        //         option.value = data[i][2];
+                        //         console.log(option.value);
+                        //         option.innerHTML = data[i][1];
+                        //         yard.appendChild(option);
+                        //     }
+                        // }
+                        // var ele = document.getElementById('option')
+                        // ele.remove()
+                    // if (supplierValue.length == 0) document.getElementById("id_yard").innerHTML = "<option></option>";
+                    // else {
+                    //     var catOptions = "";
+                    //     for (categoryId in data[supplierValue][1]) {
+                    //         catOptions += "<option>" + data[supplierValue][1] + "</option>";
+                    //     }
+                    //     document.getElementById("id_yard").innerHTML = catOptions;
+                    // }
+                })
+            });
+        // }, false)
+        setTimeout(() => {
+        var event = new Event('change');
+        supplier.dispatchEvent(event);
+
+        }, 1000)
+
+
+        var gr = document.getElementById('id_grade')
+        if(gr){
+        gr.addEventListener("click", function() {
+            gr.addEventListener('change', function(evt) {
+                // console.log("listned");
+                var selectedValue = gr.value;
+                // console.log(selectedValue);
+                c = selectedValue
+                var i= 0
+                
+
+                readTextFile(gradeurl, function(text) {
+                    var data = JSON.parse(text);
+                    while(c!=data[i].pk && i<data.length){
+                        c = selectedValue
+                        i++;
+                    }
+                    if(data[i].pk==c){
+                        field = data[i].fields
+                        for(const i in field){
+                            var name = document.getElementById(i)
+                            // console.log(field[i]);
+                            if(field[i]=="SELECT" || field[i]==0){
+                                continue
+                            }else{
+                                var idf = i.charAt(i.length-1)
+                                var ele = document.getElementById(idf)
+                                // console.log( i + " " + idf);
+                                
+                                if(i=='metalc' && field[i]!=0){
+                                    ele.removeAttribute('hidden')
+                                }else if(i.startsWith('metalc') && field[i]!=0){
+                                    var def = 'metalc'+idf
+                                    ele.removeAttribute('hidden')
+
+                                }else if(i=='costc' && field[i]!=0){
+                                    var ele = document.getElementById('cost')
+                                    ele.removeAttribute('hidden')
+                                }
+                                else if(i.startsWith('costc') && field[i]!=0){
+                                    console.log(field[i]);
+                                    var ele = document.getElementById('c' + idf)
+                                    console.log('c' + idf);
+                                    // var def = 'costc'+idf
+                                    ele.removeAttribute('hidden')
+                                }else{
+                                    
+                                    // console.log("idhar" + " " + i);
+                                    name.style.display = 'inline-block'
+                                }
+                                name.innerHTML =  field[i]
+                                if(i=='typeo'){
+                                        if(field[i]==1){
+                                            name.innerHTML = 'Ingot'
+                                        }else if(field[i]==2){
+                                            name.innerHTML = 'Scrap'
+                                        }
+                                    }
+                            }
+                        }
+                    }
+                    
+                });
+            });
+    }, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        gr.dispatchEvent(event);
+
+    }, 1000)
+    }
+        
+
+    })
+    var gr = document.getElementById('id_grade')
+    
+    var btn = document.getElementById('add-metal')
+    
+    if(btn){
+        btn.addEventListener("click", function() {
+        var obj = document.getElementById(cmetal)
+        //console.log(obj)
+        obj.style.display = 'flex';
+        obj.setAttribute('class','form-group row')
+        cmetal++;
+    }, false);
+    }
+
+
+
+    var d = document.getElementById('costn')
+    d.addEventListener("click", function() {
+        d.addEventListener('change', function(evt) {
+            console.log("listned");
+            var selectedValue = costn.value;
+            var e = document.getElementById('costc') 
+            c = selectedValue
+
+            readTextFile(url, function(text) {
+                
+                var data = JSON.parse(text);
+                
+                for (let i = 0; i < data.length; i++) {
+                    
+                    if(data[i][0]==c){
+                        c = data[i][1]
+                    }   
+                }
+                    // console.log("jns")
+                    e.value = c
+            });
+        });
+    }, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d.dispatchEvent(event);
+
+    }, 1000)
+
+
+
+
+    var dn = document.getElementById('costnn')
+    dn.addEventListener("click", function() {
+    dn.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costnn.value;
+        
+        var e = document.getElementById('costcn')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        dn.dispatchEvent(event);
+
+    }, 1000)
+
+
+    setTimeout(() => {
+        var event = new Event('change');
+        d.dispatchEvent(event);
+
+    }, 1000)
+
+
+
+    var d1 = document.getElementById('costn1')
+    d1.addEventListener("click", function() {
+    d1.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn1.value;
+        
+        var e = document.getElementById('costc1')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d1.dispatchEvent(event);
+
+    }, 1000)
+
+
+    var d2 = document.getElementById('costn2')
+    d2.addEventListener("click", function() {
+    d2.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn2.value;
+        
+        var e = document.getElementById('costc2')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d2.dispatchEvent(event);
+
+    }, 1000)
+
+
+
+    var d3 = document.getElementById('costn3')
+    d3.addEventListener("click", function() {
+    d3.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn3.value;
+        
+        var e = document.getElementById('costc3')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d3.dispatchEvent(event);
+
+    }, 1000)
+
+    var d4 = document.getElementById('costn4')
+    d4.addEventListener("click", function() {
+    d4.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn4.value;
+        
+        var e = document.getElementById('costc4')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d4.dispatchEvent(event);
+
+    }, 1000)
+
+
+
+
+    var d5 = document.getElementById('costn5')
+    d5.addEventListener("click", function() {
+    d5.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn5.value;
+        
+        var e = document.getElementById('costc5')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d5.dispatchEvent(event);
+
+    }, 1000)
+
+
+    var d6 = document.getElementById('costn6')
+    d6.addEventListener("click", function() {
+    d6.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn6.value;
+        
+        var e = document.getElementById('costc6')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d6.dispatchEvent(event);
+
+    }, 1000)
+
+    
+    var d7 = document.getElementById('costn7')
+    d7.addEventListener("click", function() {
+    d7.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn7.value;
+        
+        var e = document.getElementById('costc7')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d7.dispatchEvent(event);
+
+    }, 1000)
+
+
+
+    var d8 = document.getElementById('costn8')
+    d8.addEventListener("click", function() {
+    d8.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn8.value;
+        
+        var e = document.getElementById('costc8')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d8.dispatchEvent(event);
+
+    }, 1000)
+
+
+    var d9 = document.getElementById('costn9')
+    d9.addEventListener("click", function() {
+    d9.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn9.value;
+        
+        var e = document.getElementById('costc9')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d9.dispatchEvent(event);
+
+    }, 1000)
+
+
+    var d10 = document.getElementById('costn10')
+    d10.addEventListener("click", function() {
+    d10.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn10.value;
+        
+        var e = document.getElementById('costc10')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d10.dispatchEvent(event);
+
+    }, 1000)
+
+    var d11 = document.getElementById('costn11')
+    d11.addEventListener("click", function() {
+    d11.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn11.value;
+        
+        var e = document.getElementById('costc11')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d11.dispatchEvent(event);
+
+    }, 1000)
+
+    var d12 = document.getElementById('costn12')
+    d12.addEventListener("click", function() {
+    d12.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn12.value;
+        
+        var e = document.getElementById('costc12')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d12.dispatchEvent(event);
+
+    }, 1000)
+
+    var d13 = document.getElementById('costn13')
+    d13.addEventListener("click", function() {
+    d13.addEventListener('change', function(evt) {
+        console.log("listned");
+        var selectedValue = costn13.value;
+        
+        var e = document.getElementById('costc13')
+        
+        c = selectedValue
+        readTextFile(url, function(text) {
+            
+            var data = JSON.parse(text);
+            for (let i = 0; i < data.length; i++) {
+                
+                if(data[i][0]==c){
+                    c = data[i][1]
+                }   
+            }
+            e.value = c
+        });
+    });
+}, false);
+    setTimeout(() => {
+        var event = new Event('change');
+        d13.dispatchEvent(event);
+
+    }, 1000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    var btn = document.getElementById('add-cost')
+    btn.addEventListener("click", function() {
+        var obj = document.getElementById(m)
+        obj.style.display = 'flex';
+        obj.setAttribute('class','form-group row')
+        m++;
+    }, false);
+
+
+
+})  
+    
+        // document.getElementById("click").onclick = function () { myFunction() };
+    
+        // function myFunction() {
+    
+        //     var input = document.createElement("input");
+        //     var input2 = document.createElement("input");
+        //     var newdiv = document.createElement("div");
+        //     newdiv.setAttribute("style", "display: inline;white-space:nowrap;");
+        //     newdiv.className = "sub-container";
+        //     input.type = "text";
+        //     input.className = "control-label"; // set the CSS class
+        //     input2.type = "text";
+        //     input2.className = "control-label";
+        //     container.appendChild(newdiv); // put it into the DOM
+        //     var br = document.createElement("br");
+        //     // var parent = document.getElementById("container");
+        //     newdiv.appendChild(input);
+        //     newdiv.appendChild(input2);
+        //     newdiv.appendChild(br);
+    
+        //     // add the text node to the newly created div
+    
+        //     // add the newly created element and its content into the DOM
+        //     const currentDiv = document.getElementById("div1");
+        //     document.body.insertBefore(newDiv, currentDiv);
+        //}
+    </script>
+</head>
+
+<body>
+    <!-- <script src="{% static '/assets/js/main.js' %}"></script> -->
+    <!-- Left Panel -->
+    {% include 'base/sidebar.html' %}
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        {% include 'base/navbar.html' %}
+
+        <!-- {% block breadcrumbs %}
+
+        {% endblock breadcrumbs %} -->
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
+                {% block content %}
+                {% endblock content %}
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        <div class="clearfix"></div>
+        <!-- Footer -->
+        {% include 'base/footer.html' %}
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+    <!-- Scripts -->
+    <!-- <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    
+
+    <!--  Chart js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script> -->
+
+    <!--Chartist Chart-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+    <script src="{% static 'assets/js/init/weather-init.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script> -->
+
+
+    <!--Local Stuff-->
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script>
+    <!-- <script>
+        jQuery(document).ready(function ($) {
+            "use strict";
+
+            // Pie chart flotPie1
+            var piedata = [
+                { label: "Desktop visits", data: [[1, 32]], color: '#5c6bc0' },
+                { label: "Tab visits", data: [[1, 33]], color: '#ef5350' },
+                { label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
+            ];
+
+            $.plot('#flotPie1', piedata, {
+                series: {
+                    pie: {
+                        show: true,
+                        radius: 1,
+                        innerRadius: 0.65,
+                        label: {
+                            show: true,
+                            radius: 2 / 3,
+                            threshold: 1
+                        },
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+            });
+            // Pie chart flotPie1  End
+            // cellPaiChart
+            var cellPaiChart = [
+                { label: "Direct Sell", data: [[1, 65]], color: '#5b83de' },
+                { label: "Channel Sell", data: [[1, 35]], color: '#00bfa5' }
+            ];
+            $.plot('#cellPaiChart', cellPaiChart, {
+                series: {
+                    pie: {
+                        show: true,
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                legend: {
+                    show: false
+                }, grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+
+            });
+            // cellPaiChart End
+            // Line Chart  #flotLine5
+            var newCust = [[0, 3], [1, 5], [2, 4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
+
+            var plot = $.plot($('#flotLine5'), [{
+                data: newCust,
+                label: 'New Data Flow',
+                color: '#fff'
+            }],
+                {
+                    series: {
+                        lines: {
+                            show: true,
+                            lineColor: '#fff',
+                            lineWidth: 2
+                        },
+                        points: {
+                            show: true,
+                            fill: true,
+                            fillColor: "#ffffff",
+                            symbol: "circle",
+                            radius: 3
+                        },
+                        shadowSize: 0
+                    },
+                    points: {
+                        show: true,
+                    },
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        show: false
+                    }
+                });
+            // Line Chart  #flotLine5 End
+            // Traffic Chart using chartist
+            if ($('#traffic-chart').length) {
+                var chart = new Chartist.Line('#traffic-chart', {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    series: [
+                        [0, 18000, 35000, 25000, 22000, 0],
+                        [0, 33000, 15000, 20000, 15000, 300],
+                        [0, 15000, 28000, 15000, 30000, 5000]
+                    ]
+                }, {
+                    low: 0,
+                    showArea: true,
+                    showLine: false,
+                    showPoint: false,
+                    fullWidth: true,
+                    axisX: {
+                        showGrid: true
+                    }
+                });
+
+                chart.on('draw', function (data) {
+                    if (data.type === 'line' || data.type === 'area') {
+                        data.element.animate({
+                            d: {
+                                begin: 2000 * data.index,
+                                dur: 2000,
+                                from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                                to: data.path.clone().stringify(),
+                                easing: Chartist.Svg.Easing.easeOutQuint
+                            }
+                        });
+                    }
+                });
+            }
+            // Traffic Chart using chartist End
+            //Traffic chart chart-js
+            if ($('#TrafficChart').length) {
+                var ctx = document.getElementById("TrafficChart");
+                ctx.height = 150;
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                        datasets: [
+                            {
+                                label: "Visit",
+                                borderColor: "rgba(4, 73, 203,.09)",
+                                borderWidth: "1",
+                                backgroundColor: "rgba(4, 73, 203,.5)",
+                                data: [0, 2900, 5000, 3300, 6000, 3250, 0]
+                            },
+                            {
+                                label: "Bounce",
+                                borderColor: "rgba(245, 23, 66, 0.9)",
+                                borderWidth: "1",
+                                backgroundColor: "rgba(245, 23, 66,.5)",
+                                pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                                data: [0, 4200, 4500, 1600, 4200, 1500, 4000]
+                            },
+                            {
+                                label: "Targeted",
+                                borderColor: "rgba(40, 169, 46, 0.9)",
+                                borderWidth: "1",
+                                backgroundColor: "rgba(40, 169, 46, .5)",
+                                pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                                data: [1000, 5200, 3600, 2600, 4200, 5300, 0]
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        }
+
+                    }
+                });
+            }
+            //Traffic chart chart-js  End
+            // Bar Chart #flotBarChart
+            $.plot("#flotBarChart", [{
+                data: [[0, 18], [2, 8], [4, 5], [6, 13], [8, 5], [10, 7], [12, 4], [14, 6], [16, 15], [18, 9], [20, 17], [22, 7], [24, 4], [26, 9], [28, 11]],
+                bars: {
+                    show: true,
+                    lineWidth: 0,
+                    fillColor: '#ffffff8a'
+                }
+            }], {
+                grid: {
+                    show: false
+                }
+            });
+            // Bar Chart #flotBarChart End
+        });
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<div hx-target="this" class="mt-3 py-3 px-3 bg-white shadow border border-gray-100">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Supplier Name: {{ quality.supplier }}
+    </h3>
+    <p class="text-gray-600">Yard Name: {{quality.yard}}</p>
+    <div class="mt-2">
+        <button hx-get="{% url 'update-quality' quality.id %}" hx-swap="outerHTML"
+            class="btn btn-success btn-info">
+            Update
+        </button>
+        <button hx-post="{% url 'delete-quality' quality.id %}" hx-swap="outerHTML swap:1s"
+            class="btn btn-success btn-info">
+            Delete
+        </button>
+    </div>
+</div>

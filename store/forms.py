@@ -1,8 +1,9 @@
+from dataclasses import fields
 from email.policy import default
 from django import forms
 from dynamic_forms import DynamicField, DynamicFormMixin
 
-from store.models import Supplier, Yard,metal, cost, grade
+from store.models import Quality, Supplier, Yard, metal, cost, grade
 
 
 class SupplierForm(forms.ModelForm):
@@ -169,7 +170,7 @@ class MetalForm(forms.ModelForm):
     class Meta:
         model = metal
         fields = [
-            'name','shortform','rate','misc'
+            'name','shortform','misc'
         ]
 
         widgets = {
@@ -178,9 +179,6 @@ class MetalForm(forms.ModelForm):
             }),
             'shortform': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'shortform'
-            }),
-            'rate': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'rate'
             }),
             'misc': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'misc'
@@ -192,7 +190,7 @@ class MetalUpdateform(forms.ModelForm):
         model = metal
 
         fields = [
-            'name','shortform','rate','misc'
+            'name','shortform','misc'
         ]
         widgets = {
             'name': forms.TextInput(attrs={
@@ -200,9 +198,6 @@ class MetalUpdateform(forms.ModelForm):
             }),
             'shortform': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'shortform'
-            }),
-            'rate': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'rate'
             }),
             'misc': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'misc'
@@ -609,8 +604,9 @@ class GradeForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(GradeForm, self).__init__(*args,**kwargs)
-        self.fields['costn'].required = False
-        self.fields['costn1'].required = False
+        self.fields['costn'].label = 'Select'
+        self.fields['costn'].label = None
+        self.fields['costn1'].empty_label = None
         self.fields['costn2'].required = False
         self.fields['costn3'].required = False
 
@@ -921,3 +917,113 @@ class GradeUpdateform(forms.ModelForm):
             }),
 
         } 
+
+
+
+
+
+class QualityForm(forms.ModelForm):
+     class Meta:
+        model = Quality
+        
+        fields = [
+            'supplier','yard','grade','metalw' ,'metalwc' ,'metalw1' ,'metalw2' ,'metalw3' ,'metalw4' ,'metalw5' ,'metalw6' ,'metalw7' ,'metalw8' ,'metalw9' ,'metalw10' ,'metalw11' ,'metalw12' ,'metalw13' ,'metalw14' ,'metalw15' ,'metalw16' ,'metalw17' ,'metalw18' ,'metalw19' ,'metalw20','duty'
+        ]
+
+        widget = {
+            'supplier': forms.Select(attrs={
+                'class': 'form-control col', 'id': 'supplier'
+            }),
+            'yard': forms.Select(attrs={
+                'class': 'dropdown', 'id': 'yard'
+            }),
+            'grade': forms.Select(attrs={
+                'class': 'form-select col', 'id': 'grade'
+            }),
+            'metalw': forms.NumberInput(attrs={
+               'class':'w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline', 'id': 'metalw'
+            }),
+            'metalwc': forms.NumberInput(attrs={
+                'class':'form-control col', 'id': 'metalw1'
+            }),
+            'metalw1': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw1',
+            }),
+            'metalw2': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw2',
+            }),
+
+            'metalw3': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw3',
+            }),
+            'metalw4': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw4',
+            }),
+
+            'metalw5': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw5',
+            }),
+
+            'metalw6': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw6',
+            }),
+
+            'metalw7': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw7',
+            }),
+
+            'metalw8': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw8',
+            }),
+
+            'metalw9': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw9',
+            }),
+
+            'metalw10': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw10',
+            }),
+
+            'metalw11': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw11',
+            }),
+
+            'metalw12': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw12',
+            }),
+
+            'metalw13': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw13',
+            }),
+
+            'metalw14': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw14',
+            }),
+
+            'metalw15': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw15',
+            }),
+
+            'metalw16': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw16',
+            }),
+
+            'metalw17': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw17',
+            }),
+
+            'metalw18': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw18',
+            }),
+
+            'metalw19': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw19',
+            }),
+
+            'metalw20': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'metalw20',
+            }),
+            'duty': forms.NumberInput(attrs={
+                'class': 'form-control col', 'id': 'duty',
+            }),
+        }

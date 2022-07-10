@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'crispy_tailwind',
-
+    'smart_selects',
     'phonenumber_field',
+    "bootstrap5",
+    'widget_tweaks',
 ]
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
@@ -140,3 +142,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 AUTH_USER_MODEL = 'users.User'
+USE_DJANGO_JQUERY = True

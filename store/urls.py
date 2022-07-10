@@ -1,16 +1,24 @@
-from django.urls import path
+from django import urls
+from django.urls import include, path
 from django.views.generic import TemplateView
 
 from .views import (
     CostListView,
     GradeListView,
     MetalListView,
+    Quality_View,
     create_cost,
     create_grade,
     create_metal,
+    create_quality,
+    create_quality_form,
     create_supplier,
     create_yard,
     SupplierListView,
+    delete_quality,
+    detail_quality,
+    # demoview,
+    show_grade,
     # YardListView,
     create_yard_form,
     delete_cost,
@@ -25,6 +33,7 @@ from .views import (
     update_grade,
     
     update_metal,
+    update_quality,
     update_supplier,
     update_yard,
 )
@@ -41,45 +50,42 @@ urlpatterns = [
     path('update_grade/<str:pk>/', update_grade, name="update_grade"),
     path('delete_grade/<str:pk>/', delete_grade, name="delete_grade"),
 
-
+    path('obj_list/',Quality_View, name="obj_list"),
+    path('chaining/', include('smart_selects.urls')),
     path('update_cost/<str:pk>/', update_cost, name="update_cost"),
     path('delete_cost/<str:pk>/', delete_cost, name="delete_cost"),
 
-
+    # path('demo/',demoview, name="demo"),
     path('update_metal/<str:pk>/', update_metal, name="update_metal"),
     path('delete_metal/<str:pk>/', delete_metal, name="delete_metal"),
+
+    # path('ajax/load-branches/', load_yard, name='ajax_load_yard'),
+
 
     # path('overhead_cost/', create_overheadCost, name='create-overheadcost'),
     path('create_cost/', create_cost, name='create_cost'),
     path('cost-list/', CostListView.as_view(), name='cost-list'),
     path('create_metal/', create_metal, name='create_metal'),
     path('metal-list/', MetalListView.as_view(), name='metal-list'),
-    # path("meta/",jsondata,name = "jsondata"),
+
     path('create-grade/', create_grade, name='create-grade'),
     path('grade-list/', GradeListView.as_view(), name='grade-list'),
-    # path("htmx-form/", htmx_form),
-    # path("create-grade/cost/", htmx_models),
+    
     path('supplier/yard/<str:pk>/', create_yard, name='supplier'),
     path('htmx/yard/<str:pk>/', detail_yard, name="detail-yard"),
     path('htmx/yard/<str:pk>/update/', update_yard, name="update-yard"),
     path('htmx/yard/<str:pk>/delete/', delete_yard, name="delete-yard"),
     path('htmx/create-yard-form/', create_yard_form, name='create-yard-form'),
 
+    path('quality_list/', create_quality, name='quality-list'),
+    path('htmx/quality/<str:pk>/', detail_quality, name="detail-quality"),
+    path('htmx/quality/<str:pk>/update/', update_quality, name="update-quality"),
+    path('htmx/quality/<str:pk>/delete/', delete_quality, name="delete-quality"),
+    path('htmx/create-quality-form/', create_quality_form, name='create-quality-form'),
+
 
     path('update_supplier/<str:pk>/', update_supplier, name="update_supplier"),
 
-    
-    # path('material-list/', materialmixlist.as_view(), name='material-list'),
-    # path('material-mix-list/', mixmateriallist.as_view(), name='material-mix-list'),
-    # path('update_mat_mix_items/<str:pk>/', update_mat_mix_items, name="update_mat_mix_items"),
-    # path('delete_material-mixture/<str:pk>/', delete_mat_mix_items, name="delete_mat_mix_items"),
-    
-    # path('delete_items/<str:pk>/', delete_items, name="delete_items"),
     path('delete_supplier/<str:pk>/', delete_supplier, name="delete_supplier"),
-    # path('', TemplateView.as_view(template_name="home.html"), name='create-book'),
-    # path('<pk>/', create_book, name='create-book'),
-    # path('book/<pk>/', detail_book, name="detail-book"),
-    # path('htmx/book/<pk>/update/', update_book, name="update-book"),
-    # path('htmx/book/<pk>/delete/', delete_book, name="delete-book"),
-    # path('htmx/create-book-form/', create_book_form, name='create-book-form'),
+
 ]
