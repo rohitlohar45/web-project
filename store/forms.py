@@ -941,7 +941,7 @@ class QualityForm(forms.ModelForm):
                 'class': 'form-select col', 'id': 'grade'
             }),
             'metalw': forms.NumberInput(attrs={
-               'class':'w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline', 'id': 'metalw'
+               'class':'appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white', 'id': 'metalw'
             }),
             'metalwc': forms.NumberInput(attrs={
                 'class':'form-control col', 'id': 'metalw1'

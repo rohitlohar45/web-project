@@ -1,377 +1,53 @@
-{% load tailwind_filters %}
-
-
-<div hx-target="this" hx-swap="outerHTML" class="mt-3 py-3 px-3 bg-white shadow border border-gray-100">
-    <form method="POST">
-        {{ form.media.js }}
-        <div class="row">
-
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body inline">
-                        {% csrf_token %}
-                        <div class="table-stats order-table">
-                            <h2 class="dropdown" style="display:inline; margin:10px ;">Supplier: {{form.supplier}} {{form.supplier.error}}
-                            </h2>
-                            <h2 class="dropdown" style="display:inline; margin:10px;">Yard: {{form.yard}} </h2>
-                            <h2 class="dropdown" style="display:inline; margin-bottom:20px ;">Grade: {{form.grade}}</h2><br><br>
-
-
-                            <section>
-                                <strong>Type: </strong>
-                                <p id="typeo" style="display:inline; color: black; "></p><br><br>
-                                <strong>Recovery </strong>
-                                <p id="recovery" style="display:inline; color: black; "></p><br><br>
-                            </section>
-
-                            <div style="display: none;">
-                                <strong>Grade Name: </strong>
-                                <p id="name" style="display:none; color: black; "></p><br><br>
-                                <strong>Details: </strong>
-                                <p id="details" style="display:none; color: black;"></p> <br><br>
-                                <strong>Grade Group: </strong>
-                                <p id="gradegrp" style="display:none; color: black;"></p> <br><br>
-                                <strong>Miscellanous: </strong>
-                                <p id="misc" style="display:none; color: black;"></p> <br><br>
-                            </div>
-                            <div id="div">
-                                <section id="section1">
-                                    {% csrf_token %}
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Rate/Kg</th>
-                                                <th scope="col">% Weightage</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr hidden id="c">
-                                                <td id="metaln"></td>
-                                                <td id="metalc"></td>
-                                                <td id="metalw">{{form.metalw}}</td>
-                                            </tr>
-                                            <tr hidden id="n">
-                                                <td id="metalnn"></td>
-                                                <td id="metalcn"></td>
-                                                <td id="metalwc"> {{form.metalwc}}</td>
-                                            </tr>
-                                            <tr hidden id="1">
-                                                <td>{{grad.metaln1}}</td>
-                                                <td>{{grad.metalc1}}</td>
-                                                <td id="metalw1">{{form.metalw2}}</td>
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc2 != 0 %}
-                                                <td>{{grad.metaln2}}</td>
-                                                <td>{{grad.metalc2}}</td>
-                                                <td id="metalw2">{{form.metalw1}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc3 != 0 %}
-                                                <td>{{grad.metaln3}}</td>
-                                                <td>{{grad.metalc3}}</td>
-                                                <td id="metalw3">{{form.metalw3}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc4 != 0 %}
-                                                <td>{{grad.metaln4}}</td>
-                                                <td>{{grad.metalc4}}</td>
-                                                <td id="metalw4">{{form.metalw4}}</td>
-
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc5 != 0 %}
-                                                <td>{{grad.metaln5}}</td>
-                                                <td>{{grad.metalc5}}</td>
-                                                <td id="metalw5">{{form.metalw5}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc6 != 0 %}
-                                                <td>{{grad.metaln6}}</td>
-                                                <td>{{grad.metalc6}}</td>
-                                                <td id="metalw6">{{form.metalw6}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc7 != 0 %}
-                                                <td>{{grad.metaln7}}</td>
-                                                <td>{{grad.metalc7}}</td>
-                                                <td id="metalw7">{{form.metalw7}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc8 != 0 %}
-                                                <td>{{grad.metaln8}}</td>
-                                                <td>{{grad.metalc8}}</td>
-                                                <td id="metalw8">{{form.metalw8}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc9 != 0 %}
-                                                <td>{{grad.metaln9}}</td>
-                                                <td>{{grad.metalc9}}</td>
-                                                <td id="metalw9">{{form.metalw9}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc10 != 0 %}
-                                                <td>{{grad.metaln10}}</td>
-                                                <td>{{grad.metalc10}}</td>
-                                                <td id="metalw10">{{form.metalw10}}</td>
-
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc11 != 0 %}
-                                                <td>{{grad.metaln11}}</td>
-                                                <td>{{grad.metalc11}}</td>
-                                                <td id="metalw11">{{form.metalw11}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc12 != 0 %}
-                                                <td>{{grad.metaln12}}</td>
-                                                <td>{{grad.metalc12}}</td>
-                                                <td id="metalw12">{{form.metalw12}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc13 != 0 %}
-                                                <td>{{grad.metaln13}}</td>
-                                                <td>{{grad.metalc13}}</td>
-                                                <td id="metalw13">{{form.metalw13}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc14 != 0 %}
-                                                <td>{{grad.metaln14}}</td>
-                                                <td>{{grad.metalc14}}</td>
-                                                <td id="metalw14">{{form.metalw14}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc15 != 0 %}
-                                                <td>{{grad.metaln15}}</td>
-                                                <td>{{grad.metalc15}}</td>
-                                                <td id="metalw15">{{form.metalw15}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc16 != 0 %}
-                                                <td>{{grad.metaln16}}</td>
-                                                <td>{{grad.metalc16}}</td>
-                                                <td id="metalw16">{{form.metalw16}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc17 != 0 %}
-                                                <td>{{grad.metaln17}}</td>
-                                                <td>{{grad.metalc17}}</td>
-                                                <td id="metalw17">{{form.metalw17}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc18 != 0 %}
-                                                <td>{{grad.metaln18}}</td>
-                                                <td>{{grad.metalc18}}</td>
-                                                <td id="metalw18">{{form.metalw18}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc19 != 0 %}
-                                                <td>{{grad.metaln19}}</td>
-                                                <td>{{grad.metalc19}}</td>
-                                                <td id="metalw19">{{form.metalw19}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.metalc20 != 0 %}
-                                                <td>{{grad.metaln20}}</td>
-                                                <td>{{grad.metalc20}}</td>
-                                                <td id="metalw20">{{form.metalw20}}</td>
-                                                {% endif %}
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </section>
-                                
-                                <aside id="aside">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Rate</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr hidden id="cost">
-                                                <td id="costn"></td>
-                                                <td id="costc"></td>
-
-                                            </tr>
-                                            <tr hidden id="cn">
-                                                <td id="costnn"></td>
-                                                <td id="costcn"></td>
-                                            </tr>
-                                            <tr hidden id="c1">
-                                                <td>{{grad.costn1}}</td>
-                                                <td>{{grad.costc1}}</td>
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc2 != 0 %}
-                                                <td>{{grad.costn2}}</td>
-                                                <td>{{grad.costc2}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc3 != 0 %}
-                                                <td>{{grad.costn3}}</td>
-                                                <td>{{grad.costc3}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc4 != 0 %}
-                                                <td>{{grad.costn4}}</td>
-                                                <td>{{grad.costc4}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc5 != 0 %}
-                                                <td>{{grad.costn5}}</td>
-                                                <td>{{grad.costc5}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc6 != 0 %}
-                                                <td>{{grad.costn6}}</td>
-                                                <td>{{grad.costc6}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc7 != 0 %}
-                                                <td>{{grad.costn7}}</td>
-                                                <td>{{grad.costc7}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc8 != 0 %}
-                                                <td>{{grad.costn8}}</td>
-                                                <td>{{grad.costc8}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc9 != 0 %}
-                                                <td>{{grad.costn9}}</td>
-                                                <td>{{grad.costc9}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc10 != 0 %}
-                                                <td>{{grad.costn10}}</td>
-                                                <td>{{grad.costc10}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc11 != 0 %}
-                                                <td>{{grad.costn11}}</td>
-                                                <td>{{grad.costc11}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc12 != 0 %}
-                                                <td>{{grad.costn12}}</td>
-                                                <td>{{grad.costc12}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc13 != 0 %}
-                                                <td>{{grad.costn13}}</td>
-                                                <td>{{grad.costc13}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc13 != 0 %}
-                                                <td>{{grad.costn13}}</td>
-                                                <td>{{grad.costc13}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc14 != 0 %}
-                                                <td>{{grad.costn14}}</td>
-                                                <td>{{grad.costc14}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc15 != 0 %}
-                                                <td>{{grad.costn15}}</td>
-                                                <td>{{grad.costc15}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc16 != 0 %}
-                                                <td>{{grad.costn16}}</td>
-                                                <td>{{grad.costc16}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc17 != 0 %}
-                                                <td>{{grad.costn17}}</td>
-                                                <td>{{grad.costc17}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc18 != 0 %}
-                                                <td>{{grad.costn18}}</td>
-                                                <td>{{grad.costc18}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc19 != 0 %}
-                                                <td>{{grad.costn19}}</td>
-                                                <td>{{grad.costc19}}</td>
-                                                {% endif %}
-                                            </tr>
-                                            <tr hidden>
-                                                {% if grad.costc20 != 0 %}
-                                                <td>{{grad.costn20}}</td>
-                                                <td>{{grad.costc20}}</td>
-                                                {% endif %}
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-</div>
-
-{% if quality %}
-<button type="submit" style="width: 120px; display:inline ; margin-left: 37%; margin-bottom:10px ; "
-    hx-post="{% url 'update-quality' quality.id %}"
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-    Submit
-</button>
-<button hx-get="{% url 'detail-quality' quality.id %}"
-    style="width: 120px; display: inline; margin-left:10px ; margin-bottom:10px ;" type="button"
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-    Cancel
-</button>
-{% else %}
-<button type="submit" style="width: 120px; margin-left: 45%; " hx-post="."
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded content-center">
-    Submit
-</button>
-{% endif %}
-</form>
-<script src="/static/smart-selects/admin/js/chainedfk.js"></script>
-<script src="/static/smart-selects/admin/js/bindfields.js"></script>
-</div>
+<div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+        First Name
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
+      <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+        Last Name
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+        Password
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************">
+      <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3 mb-2">
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+        City
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
+    </div>
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+        State
+      </label>
+      <div class="relative">
+        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+          <option>New Mexico</option>
+          <option>Missouri</option>
+          <option>Texas</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+        Zip
+      </label>
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
+    </div>
+  </div>

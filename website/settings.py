@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'smart_selects',
     'phonenumber_field',
     "bootstrap5",
-    'widget_tweaks',
 ]
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
@@ -137,9 +136,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 AUTH_USER_MODEL = 'users.User'
 USE_DJANGO_JQUERY = True
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
