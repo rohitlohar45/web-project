@@ -3,6 +3,7 @@ from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 from users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+from django.db.models.deletion import CASCADE
 
 
 class Supplier(models.Model):
