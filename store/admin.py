@@ -1,4 +1,4 @@
-from tkinter import Image
+# from tkinter import Image
 from django.contrib import admin
 from django.contrib.admin.options import TabularInline
 from django.template.loader import get_template
