@@ -38,6 +38,53 @@ from .forms import (
     # demoForm
 )
 
+
+
+def files():
+    JSONSerializer = serializers.get_serializer("json")
+    json_serializer = JSONSerializer()
+    json_serializer.serialize(metal.objects.all())
+    data = json_serializer.getvalue()
+
+    data = list(metal.objects.values_list("id","shortform"))
+    a_file = open("./data_metal.json", "w")
+    json.dump(data, a_file)
+    a_file.close()
+    with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
+        dest.write(source.read()) 
+    # with open("./static/assets/js/data_metal.json","w") as out:
+    #     json_serializer.serialize(metal.objects.all(), stream=out)
+    # data = list(cost.objects.values_list("id","rate"))
+    # a_file = open("./data.json", "w")
+    # json.dump(data, a_file)
+    # a_file.close()
+    # with open("data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
+    #     dest.write(source.read()) 
+
+    data = list(cost.objects.values_list("name","rate"))
+    a_file = open("./data.json", "w")
+    json.dump(data, a_file)
+    a_file.close()
+    with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
+        dest.write(source.read())  
+
+
+    data = list(Yard.objects.values_list("supplier","name","id"))
+    a_file = open("./yard.json","w")
+    json.dump(data,a_file)
+    a_file.close()
+    with open("./yard.json","r") as source, open("./static/assets/js/yard.json","w") as dest:
+        dest.write(source.read())
+
+    JSONSerializer = serializers.get_serializer("json")
+    json_serializer = JSONSerializer()
+    json_serializer.serialize(grade.objects.all())
+    data = json_serializer.getvalue()
+
+    with open("./static/assets/js/data_grade.json","w") as out:
+        json_serializer.serialize(grade.objects.all(), stream=out)    
+
+
 # Supplier views
 @login_required(login_url='login')
 def create_supplier(request):
@@ -60,6 +107,7 @@ def create_supplier(request):
             Supplier.objects.create(name=name, address=address, contact=contact,mob_no=mob_no,email=email,ename=ename,econtact=econtact,
                 emob_no=emob_no, eemail=eemail
             )
+            files()
             return redirect('supplier-list')
     context = {
         'form': forms
@@ -82,6 +130,7 @@ def update_supplier(request, pk):
 		form = SupplierUpdateForm(request.POST, instance=queryset)
 		if form.is_valid():
 			form.save()
+            
 			return redirect('supplier-list')
 
 	context = {
@@ -117,7 +166,7 @@ def create_yard(request, pk):
             return render(request, "partials/yard_form.html", context={
                 "form": form
             })
-
+    files()
     context = {
         "form": form,
         "supplier": supplier,
@@ -135,7 +184,7 @@ def update_yard(request, pk):
         if form.is_valid():
             form.save()
             return redirect("detail-yard", pk=yard.id)
-
+    files()
     context = {
         "form": form,
         "yard": yard
@@ -150,7 +199,7 @@ def delete_yard(request, pk):
     if request.method == "POST":
         yard.delete()
         return HttpResponse("")
-
+    files()
     return HttpResponseNotAllowed(
         [
             "POST",
@@ -196,6 +245,7 @@ def create_cost(request):
             cost.objects.create(
                 name=name, shortform=shortform, rate=rate, misc=misc
             )
+            files()
             return redirect('cost-list')
     context = {
         'form': forms
@@ -209,10 +259,11 @@ def update_cost(request, pk):
 	form = CostUpdateform(instance=queryset)
 	if request.method == 'POST':
 		form = CostUpdateform(request.POST, instance=queryset)
+
 		if form.is_valid():
 			form.save()
 			return redirect('cost-list')
-
+    
 	context = {
 		'form':form
 	}
@@ -238,10 +289,7 @@ def create_metal(request):
             metal.objects.create(
                 name=name, shortform=shortform, misc=misc
             )
-
-            
-
-
+            files()
             return redirect('metal-list')
     context = {
         'form': forms
@@ -255,13 +303,14 @@ def update_metal(request, pk):
 		form = MetalUpdateform(request.POST, instance=queryset)
 		if form.is_valid():
 			form.save()
-			return redirect('metal-list')
+
+			return redirect('metal-list')    
 
 	context = {
 		'form':form
 	}
 	return render(request, 'store/create_metal.html', context)    
-
+files()
 
 def delete_metal(request, pk):
 	queryset = metal.objects.get(id=pk)
@@ -270,22 +319,13 @@ def delete_metal(request, pk):
 		return redirect('metal-list')
 	return render(request, 'store/delete_items.html')      
 
-
+files()
 class MetalListView(ListView):
     model = metal
     template_name = 'store/metal_list.html'
     context_object_name = 'metal'       
 
-
-
-
-
-
-
-
-
-
-
+files()
 
 
 model1 = ""
@@ -413,6 +453,7 @@ def create_grade(request):
                 costn16=costn16, costc16=costc16, costn17=costn17, costc17=costc17,costn18=costn18, costc18=costc18,costn19=costn19, costc19=costc19,
                 costn20=costn20, costc20=costc20
             )
+            files()
             return redirect('grade-list')
         else:
             print(forms.errors.as_json())               
@@ -431,6 +472,7 @@ def create_grade(request):
 
 def show_grade(request):
     gradeobj = grade.objects.all()
+    files()
     context = {'grade':gradeobj}
     return render(request, './tp.html',context)
 
@@ -438,12 +480,7 @@ def show_grade(request):
 #     return JsonResponse(data,safe = False)
 
 
-data = list(cost.objects.values_list("id","rate"))
-a_file = open("./data.json", "w")
-json.dump(data, a_file)
-a_file.close()
-with open("data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-    dest.write(source.read()) 
+
 
 
 def update_grade(request,pk):
@@ -457,6 +494,7 @@ def update_grade(request,pk):
         # print(form)
         obj = form.save(commit=False)
         obj.save()
+        files()
         return redirect('grade-list')
     else:
         print(form.errors.as_json())    
@@ -530,6 +568,7 @@ def Quality_View(request):
                  metalw16=metalw16, metalw17=metalw17, metalw18=metalw18, metalw19=metalw19,
                  metalw20=metalw20
             )
+            files()
             return redirect('supplier-list')
         else:
             print(forms.errors.as_json())    
@@ -552,7 +591,7 @@ def create_quality(request):
             return render(request, "partials/quality_form.html", context={
                 "form": form
             })
-
+    files()
     context = {
         "form": form,
         "qualitys": qualitys,
@@ -610,14 +649,8 @@ def create_quality_form(request):
  
 
 
+files()
 
-JSONSerializer = serializers.get_serializer("json")
-json_serializer = JSONSerializer()
-json_serializer.serialize(grade.objects.all())
-data = json_serializer.getvalue()
-
-with open("./static/assets/js/data_grade.json","w") as out:
-    json_serializer.serialize(grade.objects.all(), stream=out)
 
 
 # with open("./data_grade.json", "r") as source, open("./static/assets/js/data_grade.json", "w") as dest:
@@ -625,35 +658,7 @@ with open("./static/assets/js/data_grade.json","w") as out:
 
 
 
-JSONSerializer = serializers.get_serializer("json")
-json_serializer = JSONSerializer()
-json_serializer.serialize(metal.objects.all())
-data = json_serializer.getvalue()
 
-data = list(metal.objects.values_list("id","shortform"))
-a_file = open("./data_metal.json", "w")
-json.dump(data, a_file)
-a_file.close()
-with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
-    dest.write(source.read()) 
-# with open("./static/assets/js/data_metal.json","w") as out:
-#     json_serializer.serialize(metal.objects.all(), stream=out)
-
-data = list(cost.objects.values_list("name","rate"))
-a_file = open("./data.json", "w")
-json.dump(data, a_file)
-a_file.close()
-with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-    dest.write(source.read())  
-
-
-
-data = list(Yard.objects.values_list("supplier","name","id"))
-a_file = open("./yard.json","w")
-json.dump(data,a_file)
-a_file.close()
-with open("./yard.json","r") as source, open("./static/assets/js/yard.json","w") as dest:
-    dest.write(source.read())
 
 
 

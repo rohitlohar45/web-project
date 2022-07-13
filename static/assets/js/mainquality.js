@@ -11,6 +11,10 @@
         rawFile.send(rawFile.responseText);
     }
 
+
+
+    
+
 //     fields = [
 //             'name','details','gradegrp','misc','metalc','costc','metaln','typeo','recovery','metalcn','metalnn',
 //             'metaln1','metalc1','metaln2','metalc2','metaln3','metalc3','metaln4','metalc4','metaln5','metalc5',
@@ -28,12 +32,26 @@
     m = 101;
 
 
-    var econtact = document.getElementsByTagName('label');
-    console.log(econtact);
-
-
-
-    
+    function call(element){
+        console.log(element);
+        readTextFile(metalurl, function(text) {
+            var data = JSON.parse(text);
+            var options = "<option>SELECT</option>";
+            for (let i = 0; i < data.length; i++) {
+                // if(data[i][0]==supplier.value){
+                    // var option = document.createElement("option");
+                    var value = data[i][0]
+                    // console.log(data);
+                    // console.log(value);
+                    options += `<option value=${value}>` + data[i][1] + "</option>";
+                    // console.log(`<option value=${value}>`);
+                    // console.log(options);
+                    // console.log(document.getElementById(element));
+                document.getElementById(element).innerHTML = options;
+            }
+        })
+    }
+  
 
     
         array = ['c',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
@@ -186,34 +204,14 @@
     var metal = document.getElementById('metaln')
 
     if(metal){
-
-        function call(element){
-            readTextFile(metalurl, function(text) {
-                var data = JSON.parse(text);
-                var options = "<option>SELECT</option>";
-                for (let i = 0; i < data.length; i++) {
-                    // if(data[i][0]==supplier.value){
-                        var option = document.createElement("option");
-                        var value = data[i][0]
-                        // console.log(value);
-                        options += `<option value=${value}>` + data[i][1] + "</option>";
-                        // console.log(`<option value=${value}>`);
-                        // console.log(options);
-                        // console.log(document.getElementById(element));
-                    document.getElementById(element).innerHTML = options;
-                }
-            })
-        }
         var element = "metaln"; call(element)
         element = "metalnn"; call(element)
 
-        for (let i = 1; i < 20; i++) {
+        for (let i = 1; i < 21; i++) {
             var element = ("metaln" +""+ i)
             var a = document.getElementById(element);
-            console.log(a);
-            call(element)
-
-            
+            // console.log(a);
+            call(element)            
         }
     }
 
@@ -245,7 +243,7 @@
         for (let i = 1; i < 20; i++) {
             var element = ("costn" +""+ i)
             var a = document.getElementById(element);
-            console.log(a);
+            // console.log(a);
             call(element)
 
             
