@@ -1,4 +1,6 @@
 {% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 <style>
 </style>
 {% block title %}Create Metal{% endblock title %}
@@ -42,26 +44,24 @@
                     <div class="card-body">
                         <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form.name|as_crispy_field }}
+                                    {{ form.details|as_crispy_field }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {{ form.gradegrp|as_crispy_field }}
+                                    {{ form.misc|as_crispy_field }}
+                                </div></div>
+<!--                                 
                             <div class="form-group">
-                                <label for="name" class="control-label mb-1">Name</label>
-                                {{ form.name }}
-                                {{ form.name.errors}}
                             </div>
                             <div class="form-group">
-                                <label for="details" class="control-label mb-1">Details</label>
-                                {{ form.details }}
-                                {{ form.details.errors}}
                             </div>
                             <div class="form-group">
-                                <label for="gradegrp" class="control-label mb-1">Grade Group 1</label>
-                                {{ form.gradegrp }}
-                                {{ form.gradegrp.errors}}
                             </div>
                             <div class="form-group">
-                                <label for="misc" class="control-label mb-1">Miscellaneous</label>
-                                {{ form.misc }}
-                                {{ form.misc.errors}}
-                            </div>
+                            </div> -->
                             <section id="section1">
                                 <center>
                                     <button type="button" class="btn btn-success" id="add-metal"

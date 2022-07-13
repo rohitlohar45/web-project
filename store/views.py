@@ -238,6 +238,10 @@ def create_metal(request):
             metal.objects.create(
                 name=name, shortform=shortform, misc=misc
             )
+
+            
+
+
             return redirect('metal-list')
     context = {
         'form': forms
@@ -620,6 +624,20 @@ with open("./static/assets/js/data_grade.json","w") as out:
 #     dest.write(source.read())     
 
 
+
+JSONSerializer = serializers.get_serializer("json")
+json_serializer = JSONSerializer()
+json_serializer.serialize(metal.objects.all())
+data = json_serializer.getvalue()
+
+data = list(metal.objects.values_list("id","shortform"))
+a_file = open("./data_metal.json", "w")
+json.dump(data, a_file)
+a_file.close()
+with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
+    dest.write(source.read()) 
+# with open("./static/assets/js/data_metal.json","w") as out:
+#     json_serializer.serialize(metal.objects.all(), stream=out)
 
 data = list(cost.objects.values_list("name","rate"))
 a_file = open("./data.json", "w")

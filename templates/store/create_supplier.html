@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
+{% load crispy_forms_tags %}
 {% block title %}Create Supplier{% endblock title %}
 
 {% block breadcrumbs %}
@@ -40,10 +41,23 @@
                 <div id="pay-invoice">
                     <div class="card-body">
                         <form action="#" method="post" novalidate="novalidate">
-                            {% csrf_token %}
-                            <p><mark>{{ error }}</mark></p>
-                            
-                            <div class="form-group ">
+                            {% csrf_token %}   
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form.name|as_crispy_field }}
+                                    {{ form.contact|as_crispy_field }}
+                                </div>
+                                <!-- <div class="form-row"> -->
+                                <div class="form-group col-md-6">
+                                    {{ form.address|as_crispy_field }}
+                                    {{ form.mob_no|as_crispy_field }}
+                                </div>
+                                </div>
+                                <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form.email|as_crispy_field }}
+                            </div></div>                         
+                            <!-- <div class="form-group ">
                                 <label for="name" class="control-label mb-1 ">Name</label>
                                 {{ form.name }}
                                 <label for="address" class="control-label mb-1 ">Address</label>
@@ -52,31 +66,31 @@
                             <div class="form-group ">
                                 <label for="contact" class="control-label mb-1 ">Contact</label>
                                 {{ form.contact }}
-                                <div style="margin: 10px;"><mark>{{form.mob_no.errors}}</mark></div>
+                                <div style="margin: 10px;"></div>
                                 <label for="mob_no" class="control-label mb-1 ">Mobile Number</label>
                                 {{ form.mob_no }}
                             </div>
                             <div class="form-group ">
-                                <div style="margin: 10px;"><mark>{{form.email.errors}}</mark></div>
+                                <div style="margin: 10px;"></div>
                                 <label for="email" class="control-label mb-1 ">Email</label>
                                 {{ form.email }}
-                            </div>
+                            </div> -->
+                            <h2 style="margin-bottom:20px ;">Export Details:</h2>
                             <div class="row">
-                                <h1 style="margin-bottom:20px ;">Export Details</h1>
                                 <div class="form-group col">
-                                    <div style="margin: 10px;"><mark>{{form.ename.errors}}</mark></div>
-                                    <label for="ename" class="control-label mb-1 ">Name</label>
+                                    <div style="margin: 10px;"></div>
+                                    <label for="ename" class="control-label mb-1 ">Name<span class="asteriskField">*</span></label>
                                     {{ form.ename }}
-                                    <div style="margin: 10px;"><mark>{{form.econtact.errors}}</mark></div>
-                                        <label for="econtact" class="control-label mb-1 ">Contact Person</label>
-                                    {{ form.econtact }}
+                                    <div style="margin: 10px;"></div>
+                                        <!-- <label for="econtact" class="control-label mb-1 asterisk">Contact Person<span class="asteriskField">*</span></label> -->
+                                    {{ form.econtact|as_crispy_field }}
                                 </div>
                                 <div class="form-group col">
-                                    <div style="margin: 10px;"><mark>{{form.mob_no.errors}}</mark></div>
-                                    <label for="emob_no" class="control-label mb-1 ">Mobile Number</label>
+                                    <div style="margin: 10px;"></div>
+                                    <label for="emob_no" class="control-label mb-1 ">Mobile Number<span class="asteriskField">*</span></label>
                                     {{ form.emob_no }}
-                                    <div style="margin: 10px;"><mark>{{form.email.errors}}</mark></div>
-                                    <label for="eemail" class="control-label mb-1 ">Email</label>
+                                    <div style="margin: 10px;"></div>
+                                    <label for="eemail" class="control-label mb-1 ">Email<span class="asteriskField">*</span></label>
                                     {{ form.eemail }}
                                 </div>
                             </div>
