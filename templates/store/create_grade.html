@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 <style>
 </style>
-{% block title %}Create Metal{% endblock title %}
+{% block title %}Create Grade{% endblock title %}
 {% block breadcrumbs %}
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -336,16 +336,16 @@
                             </section>
                             <section id="section2">
                                 <center>
-                                    <h3 style="margin: 15px;">Type of Product</h3>
+                                    <h2 style="margin: 15px;"><strong>Type of Product</strong></h2>
                                 </center>
                                 <div class="from-group row" style="margin-bottom:20px;">
-                                    <label for="typeo" class="control-label mb-1 col">Type</label>
-                                    {{ form.typeo }}
+                                    <!-- <label for="typeo" class="control-label mb-1 col">Type</label> -->
+                                    {{ form.typeo|as_crispy_field }}
+                                    {{ form.recovery|as_crispy_field }}
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="recovery" class="control-label mb-1 col">Recovery</label>
-                                    {{ form.recovery }}
+                                    <!-- <label for="recovery" class="control-label mb-1 col">Recovery</label> -->
                                 </div>
 
                             </section>

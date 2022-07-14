@@ -40,6 +40,57 @@ from .forms import (
 
 
 
+
+JSONSerializer = serializers.get_serializer("json")
+json_serializer = JSONSerializer()
+json_serializer.serialize(metal.objects.all())
+data = json_serializer.getvalue()
+
+data = list(metal.objects.values_list("id","shortform"))
+a_file = open("./data_metal.json", "w")
+json.dump(data, a_file)
+a_file.close()
+with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
+    dest.write(source.read()) 
+# with open("./static/assets/js/data_metal.json","w") as out:
+#     json_serializer.serialize(metal.objects.all(), stream=out)
+# data = list(cost.objects.values_list("id","rate"))
+# a_file = open("./data.json", "w")
+# json.dump(data, a_file)
+# a_file.close()
+# with open("data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
+#     dest.write(source.read()) 
+
+data = list(cost.objects.values_list("name","rate"))
+a_file = open("./data.json", "w")
+json.dump(data, a_file)
+a_file.close()
+with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
+    dest.write(source.read())  
+
+
+data = list(Yard.objects.values_list("supplier","name","id"))
+a_file = open("./yard.json","w")
+json.dump(data,a_file)
+a_file.close()
+with open("./yard.json","r") as source, open("./static/assets/js/yard.json","w") as dest:
+    dest.write(source.read())
+
+JSONSerializer = serializers.get_serializer("json")
+json_serializer = JSONSerializer()
+json_serializer.serialize(grade.objects.all())
+data = json_serializer.getvalue()
+
+with open("./static/assets/js/data_grade.json","w") as out:
+    json_serializer.serialize(grade.objects.all(), stream=out)    
+
+
+
+
+
+
+
+
 def files():
     JSONSerializer = serializers.get_serializer("json")
     json_serializer = JSONSerializer()
@@ -130,11 +181,11 @@ def update_supplier(request, pk):
 		form = SupplierUpdateForm(request.POST, instance=queryset)
 		if form.is_valid():
 			form.save()
-            
 			return redirect('supplier-list')
 
 	context = {
-		'form':form
+		'form':form,
+        'files': files()
 	}
 	return render(request, 'store/create_supplier.html', context)  
 
@@ -144,7 +195,7 @@ def delete_supplier(request, pk):
 	if request.method == 'POST':
 		queryset.delete()
 		return redirect('supplier-list')
-	return render(request, 'store/delete_items.html')   
+	return render(request, 'store/delete_items.html', context={'files': files()})   
 
 
 
@@ -265,7 +316,8 @@ def update_cost(request, pk):
 			return redirect('cost-list')
     
 	context = {
-		'form':form
+		'form':form,
+        'files': files()
 	}
 	return render(request, 'store/create_cost.html', context)    
 
@@ -275,7 +327,7 @@ def delete_cost(request, pk):
 	if request.method == 'POST':
 		queryset.delete()
 		return redirect('cost-list')
-	return render(request, 'store/delete_items.html')    
+	return render(request, 'store/delete_items.html', context={'files': files()})    
 
 
 def create_metal(request):
@@ -307,7 +359,8 @@ def update_metal(request, pk):
 			return redirect('metal-list')    
 
 	context = {
-		'form':form
+		'form':form,
+        'files': files()
 	}
 	return render(request, 'store/create_metal.html', context)    
 files()
@@ -317,7 +370,7 @@ def delete_metal(request, pk):
 	if request.method == 'POST':
 		queryset.delete()
 		return redirect('metal-list')
-	return render(request, 'store/delete_items.html')      
+	return render(request, 'store/delete_items.html',context={'files': files()})      
 
 files()
 class MetalListView(ListView):
@@ -485,7 +538,6 @@ def show_grade(request):
 
 def update_grade(request,pk):
     obj = get_object_or_404(grade,id=pk)
-    print(obj)
     form= GradeForm(request.POST or None, instance=obj)
 
     context = {'form': form}
@@ -498,7 +550,7 @@ def update_grade(request,pk):
         return redirect('grade-list')
     else:
         print(form.errors.as_json())    
-
+    files()    
     context = {'form': form}
         
     return render(request, 'store/create_grade.html',context)
@@ -517,7 +569,7 @@ def delete_grade(request, pk):
 	if request.method == 'POST':
 		queryset.delete()
 		return redirect('grade-list')
-	return render(request, 'store/delete_items.html')      
+	return render(request, 'store/delete_items.html',context={'files': files()})      
 
 
 class GradeListView(ListView):
@@ -609,7 +661,7 @@ def update_quality(request, pk):
         if form.is_valid():
             form.save()
             return redirect("detail-quality", pk=quality.id)
-
+    files()
     context = {
         "form": form,
         "quality": quality
@@ -624,7 +676,7 @@ def delete_quality(request, pk):
     if request.method == "POST":
         quality.delete()
         return HttpResponse("")
-
+    files()
     return HttpResponseNotAllowed(
         [
             "POST",

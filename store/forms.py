@@ -1,14 +1,17 @@
 from cProfile import label
 from dataclasses import fields
 from email.policy import default
+from pyexpat.errors import messages
 from django import forms
+from django.core.validators import RegexValidator
 from dynamic_forms import DynamicField, DynamicFormMixin
 
 from store.models import Quality, Supplier, Yard, metal, cost, grade
 
 
 class SupplierForm(forms.ModelForm):
-    mob_no = forms.CharField(label='Mobile Number',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'mob_no',}))
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    mob_no = forms.CharField(label='Mobile Number',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'mob_no',}),)
     emob_no = forms.CharField(label='Mobile Number',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'emob_no',}))
     ename = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'ename',}))
     econtact = forms.CharField(label='Contact',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'contact',}))
@@ -72,15 +75,22 @@ class SupplierForm(forms.ModelForm):
 
 
 class SupplierUpdateForm(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    mob_no = forms.CharField(label='Mobile Number',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'mob_no',}),)
+    emob_no = forms.CharField(label='Mobile Number',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'emob_no',}))
+    ename = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'ename',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')])
+    econtact = forms.CharField(label='Contact',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'contact',}))
+    eemail = forms.EmailField(label='Email',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'eemail',}))
     class Meta:
         model = Supplier
-        fields = [
-            'name', 'address','contact','mob_no','email','ename','econtact','emob_no','eemail'
-        ]
+        fields = "__all__"
+        # fields = [
+        #     'name', 'address','contact','mob_no','email','ename','econtact','emob_no','eemail'
+        # ]
 
         widgets = {
             'name': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'name'
+                'class': 'form-control', 'id': 'name',
             }),
             'address': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'address'
@@ -88,12 +98,9 @@ class SupplierUpdateForm(forms.ModelForm):
             'contact': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'contact'
             }),
-            'mob_no': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'mob_no'
-            }),
-            'email': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'email'
-            }),
+            # 'mob_no': forms.TextInput(attrs={
+            #     'class': 'form-control', 'id': 'mob_no',
+            # }),
             'email': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'email'
             }),
@@ -110,10 +117,15 @@ class SupplierUpdateForm(forms.ModelForm):
                 'class': 'form-control', 'id': 'eemail'
             }),
         }
+
+        def __init__(self,*args,**kwargs):
+            super(SupplierForm,self).__init__(*args,**kwargs)
+            self.fields['ename'].label = "Name"
    
 
 
 class YardForm(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )    
     class Meta:
         model = Yard
         fields = [
@@ -131,15 +143,14 @@ class YardForm(forms.ModelForm):
 
 
 class YardUpdateForm(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+
     class Meta:
         model = Yard
         fields = [
-            'supplier','name', 'address'
+            'name', 'address'
         ]
         widgets = {
-            'supplier': forms.Select(attrs={
-                'class': 'form-control', 'id': 'supplier'
-            }),
             'name': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'name'
             }),
@@ -174,6 +185,8 @@ class YardUpdateForm(forms.ModelForm):
 
 
 class MetalForm(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
     class Meta:
         model = metal
         fields = [
@@ -193,6 +206,9 @@ class MetalForm(forms.ModelForm):
         }
 
 class MetalUpdateform(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+
     class Meta:
         model = metal
 
@@ -215,6 +231,9 @@ class MetalUpdateform(forms.ModelForm):
 
 
 class CostForm(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+
     class Meta:
         model = cost
         fields = [
@@ -237,6 +256,9 @@ class CostForm(forms.ModelForm):
         }
 
 class CostUpdateform(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+
     class Meta:
         model = cost
 
@@ -287,6 +309,9 @@ MODEL_CHOICES = {
 # print(MODEL_CHOICES['Clearing Housing agency'])
 
 class GradeForm(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+
     class Meta:
         model = grade
         
@@ -620,6 +645,9 @@ class GradeForm(forms.ModelForm):
 
 
 class GradeUpdateform(forms.ModelForm):
+    name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
+    misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+
     class Meta:
         model = grade
         fields = [

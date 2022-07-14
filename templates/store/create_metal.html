@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
+{% load crispy_forms_tags %}
 {% block title %}Create Metal{% endblock title %}
 
 {% block breadcrumbs %}
@@ -42,7 +43,7 @@
                     <div class="card-body">
                         <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="name" class="control-label mb-1">Name</label>
                                 {{ form.name }}
                             </div>
@@ -53,9 +54,22 @@
                             <div class="form-group">
                                 <label for="misc" class="control-label mb-1">Miscellaneous</label>
                                 {{ form.misc }}
+                            </div> -->
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    {{ form.name|as_crispy_field }}
+                                    <!-- <div class="form-row"> -->
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        {{ form.shortform|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                    {{ form.misc|as_crispy_field }}
+                                </div>
                             </div>
+                            
                             <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info">
                                     <span id="payment-button-amount">Create Metal</span>
                                 </button>
                             </div>
