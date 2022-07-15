@@ -205,7 +205,7 @@
 
     if(metal){
         // var element = "metaln"; call(element)
-        element = "metalnn"; call(element)
+        var element = "metalnn"; call(element)
 
         for (let i = 1; i < 21; i++) {
             var element = ("metaln" +""+ i)
