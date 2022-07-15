@@ -204,7 +204,7 @@
     var metal = document.getElementById('metaln')
 
     if(metal){
-        var element = "metaln"; call(element)
+        // var element = "metaln"; call(element)
         element = "metalnn"; call(element)
 
         for (let i = 1; i < 21; i++) {
@@ -220,7 +220,7 @@
     var d = document.getElementById('costn')
     if(d){
         
-        function call(element){
+        function callc(element){
             readTextFile(url, function(text) {
                 var data = JSON.parse(text);
                 var options = "<option>SELECT</option>";
@@ -237,14 +237,16 @@
                 }
             })
         }
-        var element = "costn"; call(element)
-        element = "costnn"; call(element)
+        var element = "costn"; callc(element)
+        element = "costnn"; callc(element)
 
-        for (let i = 1; i < 20; i++) {
+        for (let i = 1; i < 21; i++) {
+            if(i==20){
+                console.log(a);
+            }
             var element = ("costn" +""+ i)
             var a = document.getElementById(element);
-            // console.log(a);
-            call(element)
+            callc(element)
 
             
         }
