@@ -1,3 +1,4 @@
+from logging import PlaceHolder
 from django import forms
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
@@ -81,15 +82,15 @@ class grade(models.Model):
     details = models.CharField(max_length=120, null=True)
     gradegrp = models.CharField(max_length=120, null=True)
     misc = models.CharField(max_length=120, null=True)
-    metaln =models.CharField(max_length=120,choices=CHOICES, default=CHOICES[0])
+    metaln =models.CharField(max_length=120, null=True)
     metalnn =models.CharField(max_length=120, null=True)
     # print(cost.objects.values_list(metaln, flat=True))
-    metalc = models.FloatField(null=True, default=0, )
+    metalc = models.FloatField(null=True, default=0 )
     
     metalcn = models.FloatField(null=True, default=0, )
     metaln1 =models.CharField(max_length=120, null=True)
     metalc1 = models.FloatField(null=True, default=0, )
-    metaln2 =models.CharField(max_length=120,choices=CHOICES, default=CHOICES[0])
+    metaln2 =models.CharField(max_length=120, null=True)
     metalc2 = models.FloatField(null=True, default=0, )
     metaln3 =models.CharField(max_length=120, null=True)
     metalc3 = models.FloatField(null=True, default=0, )

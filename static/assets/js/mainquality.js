@@ -32,26 +32,44 @@
     m = 101;
 
 
-    function call(element){
-        console.log(element);
+
+
+    function call(element, values){
         readTextFile(metalurl, function(text) {
             var data = JSON.parse(text);
-            var options = "<option>SELECT</option>";
-            for (let i = 0; i < data.length; i++) {
-                // if(data[i][0]==supplier.value){
-                    // var option = document.createElement("option");
-                    var value = data[i][0]
-                    // console.log(data);
-                    // console.log(value);
-                    options += `<option value=${value}>` + data[i][1] + "</option>";
-                    // console.log(`<option value=${value}>`);
-                    // console.log(options);
-                    // console.log(document.getElementById(element));
-                document.getElementById(element).innerHTML = options;
+            var options = ''
+            var c = values
+            if(values!=0){
+                for (let i = 0; i < data.length; i++) {
+                    const element = data;
+                    if(c = data[i][0]){
+                        c = data[i][1];
+                        break;
+                    }
+                }
             }
+            if(values!=0){
+                options += "<option>"+ c  +"</option>"
+            }else{
+                options += "<option>SELECT</option>";
+            }
+            // console.log(element);
+            for (let i = 0; i < data.length; i++) {
+                var value = data[i][0]
+                if(value==values){
+                    continue;
+                }else{
+                    console.log(value + " " + values);
+                    options += `<option value=${value}>` + data[i][1] + "</option>";
+                }
+                // console.log(document.getElementById(element));
+            }
+            document.getElementById(element).innerHTML = options;
         })
     }
   
+    // var metaln = document.getElementById('metaln')
+    // console.log(metaln.value);
 
     
         array = ['c',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
@@ -74,7 +92,7 @@
                                     var value = data[i][2]
                                     // console.log("This is $(2)" );
                                     options += `<option value=${value}>` + data[i][1] + "</option>";
-                                    console.log(`<option value=${value}>`);
+                                    // console.log(`<option value=${value}>`);
                                 }
                                 document.getElementById("id_yard").innerHTML = options;
                             }
@@ -158,8 +176,6 @@
                                     // var def = 'costc'+idf
                                     ele.removeAttribute('hidden')
                                 }else{
-                                    
-                                    // console.log("idhar" + " " + i);
                                     name.style.display = 'inline-block'
                                 }
                                 name.innerHTML =  field[i]
@@ -187,7 +203,6 @@
 
     
     var gr = document.getElementById('id_grade')
-    
     var btn = document.getElementById('add-metal')
     
     if(btn){
@@ -204,15 +219,59 @@
     var metal = document.getElementById('metaln')
 
     if(metal){
-        // var element = "metaln"; call(element)
-        var element = "metalnn"; call(element)
+        // console.log(metal.value);
+        let windowurl = window.location.href
 
-        for (let i = 1; i < 21; i++) {
-            var element = ("metaln" +""+ i)
-            var a = document.getElementById(element);
-            console.log(a);
-            call(element)            
+        if(windowurl.includes('update')){
+            var c = windowurl.charAt(windowurl.length-2);
+            var j = 0
+            readTextFile(gradeurl, function(text) {
+                var data = JSON.parse(text);
+                while(c!=data[j].pk && j<data.length){
+                    j++;
+                }
+                field = data[j].fields
+                // console.log("field: "  + field.metalcn);
+                for(const i in field){
+                    console.log(field[i]);
+                    if(field[i]=="SELECT"){
+                        
+                    }else if(i.startsWith('metal')){
+                        var element = "metaln"; call(element,field.metalcn)
+                        // console.log("field" + field.metalc);
+                        element = "metalnn"; call(element,field.metalc)
+                        // var element = document.getElementById(i);
+                        console.log("ok");
+                        for (let j = 1; j < 21; j++) {
+                            var element = ("metaln" +""+ j)
+                            // var a = document.getElementById(element);
+                            // console.log(a);
+                            call(element,0) 
+                            // console.log(a);            
+                        }
+                        
+                        // metal.innerHTML = field[i]
+                    }
+                }
+            })
+        }else{
+            var element = "metaln"; call(element,0)
+            var element = "metalnn"; call(element,0)
+    
+            for (let i = 1; i < 21; i++) {
+                var element = ("metaln" +""+ i)
+                var a = document.getElementById(element);
+                // console.log(a);
+                call(element,0)            
+            }
         }
+
+        // if(windowurl.includes('update')){
+        //     pass
+        // }else{
+        // }
+        
+
     }
 
 

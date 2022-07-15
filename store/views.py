@@ -1,3 +1,23 @@
+from .models import (
+    Quality,
+    Supplier,
+    Yard,
+    cost,
+    grade, metal,
+)
+from .forms import (
+    CostUpdateform,
+    GradeUpdateform,
+    # MakeAndModelForm,
+    MetalUpdateform,
+    QualityForm,
+    SupplierForm,
+    YardForm,
+    SupplierUpdateForm,
+    YardUpdateForm, CostForm, GradeForm, MetalForm,
+    # demoForm
+)
+from users.models import User
 from multiprocessing import context
 import os
 import re
@@ -17,41 +37,18 @@ from django.core.serializers.json import DjangoJSONEncoder
 error = ""
 error2 = ""
 
-from users.models import User
-from .models import (  
-    Quality,
-    Supplier,
-    Yard,
-    cost,
-    grade, metal,
-)
-from .forms import (
-    CostUpdateform,
-    GradeUpdateform,
-    # MakeAndModelForm,
-    MetalUpdateform,
-    QualityForm,
-    SupplierForm,
-    YardForm,
-    SupplierUpdateForm,
-    YardUpdateForm, CostForm, GradeForm, MetalForm,
-    # demoForm
-)
-
-
-
 
 JSONSerializer = serializers.get_serializer("json")
 json_serializer = JSONSerializer()
 json_serializer.serialize(metal.objects.all())
 data = json_serializer.getvalue()
 
-data = list(metal.objects.values_list("id","shortform"))
+data = list(metal.objects.values_list("id", "shortform"))
 a_file = open("./data_metal.json", "w")
 json.dump(data, a_file)
 a_file.close()
 with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
-    dest.write(source.read()) 
+    dest.write(source.read())
 # with open("./static/assets/js/data_metal.json","w") as out:
 #     json_serializer.serialize(metal.objects.all(), stream=out)
 # data = list(cost.objects.values_list("id","rate"))
@@ -59,21 +56,21 @@ with open("./data_metal.json", "r") as source, open("./static/assets/js/data_met
 # json.dump(data, a_file)
 # a_file.close()
 # with open("data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-#     dest.write(source.read()) 
+#     dest.write(source.read())
 
-data = list(cost.objects.values_list("name","rate"))
+data = list(cost.objects.values_list("name", "rate"))
 a_file = open("./data.json", "w")
 json.dump(data, a_file)
 a_file.close()
 with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-    dest.write(source.read())  
+    dest.write(source.read())
 
 
-data = list(Yard.objects.values_list("supplier","name","id"))
-a_file = open("./yard.json","w")
-json.dump(data,a_file)
+data = list(Yard.objects.values_list("supplier", "name", "id"))
+a_file = open("./yard.json", "w")
+json.dump(data, a_file)
 a_file.close()
-with open("./yard.json","r") as source, open("./static/assets/js/yard.json","w") as dest:
+with open("./yard.json", "r") as source, open("./static/assets/js/yard.json", "w") as dest:
     dest.write(source.read())
 
 JSONSerializer = serializers.get_serializer("json")
@@ -81,14 +78,8 @@ json_serializer = JSONSerializer()
 json_serializer.serialize(grade.objects.all())
 data = json_serializer.getvalue()
 
-with open("./static/assets/js/data_grade.json","w") as out:
-    json_serializer.serialize(grade.objects.all(), stream=out)    
-
-
-
-
-
-
+with open("./static/assets/js/data_grade.json", "w") as out:
+    json_serializer.serialize(grade.objects.all(), stream=out)
 
 
 def files():
@@ -97,12 +88,12 @@ def files():
     json_serializer.serialize(metal.objects.all())
     data = json_serializer.getvalue()
 
-    data = list(metal.objects.values_list("id","shortform"))
+    data = list(metal.objects.values_list("id", "shortform"))
     a_file = open("./data_metal.json", "w")
     json.dump(data, a_file)
     a_file.close()
     with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
-        dest.write(source.read()) 
+        dest.write(source.read())
     # with open("./static/assets/js/data_metal.json","w") as out:
     #     json_serializer.serialize(metal.objects.all(), stream=out)
     # data = list(cost.objects.values_list("id","rate"))
@@ -110,21 +101,20 @@ def files():
     # json.dump(data, a_file)
     # a_file.close()
     # with open("data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-    #     dest.write(source.read()) 
+    #     dest.write(source.read())
 
-    data = list(cost.objects.values_list("name","rate"))
+    data = list(cost.objects.values_list("name", "rate"))
     a_file = open("./data.json", "w")
     json.dump(data, a_file)
     a_file.close()
     with open("./data.json", "r") as source, open("./static/assets/js/data.json", "w") as dest:
-        dest.write(source.read())  
+        dest.write(source.read())
 
-
-    data = list(Yard.objects.values_list("supplier","name","id"))
-    a_file = open("./yard.json","w")
-    json.dump(data,a_file)
+    data = list(Yard.objects.values_list("supplier", "name", "id"))
+    a_file = open("./yard.json", "w")
+    json.dump(data, a_file)
     a_file.close()
-    with open("./yard.json","r") as source, open("./static/assets/js/yard.json","w") as dest:
+    with open("./yard.json", "r") as source, open("./static/assets/js/yard.json", "w") as dest:
         dest.write(source.read())
 
     JSONSerializer = serializers.get_serializer("json")
@@ -132,8 +122,8 @@ def files():
     json_serializer.serialize(grade.objects.all())
     data = json_serializer.getvalue()
 
-    with open("./static/assets/js/data_grade.json","w") as out:
-        json_serializer.serialize(grade.objects.all(), stream=out)    
+    with open("./static/assets/js/data_grade.json", "w") as out:
+        json_serializer.serialize(grade.objects.all(), stream=out)
 
 
 # Supplier views
@@ -154,10 +144,9 @@ def create_supplier(request):
             emob_no = forms.cleaned_data['emob_no']
             eemail = forms.cleaned_data['eemail']
 
-
-            Supplier.objects.create(name=name, address=address, contact=contact,mob_no=mob_no,email=email,ename=ename,econtact=econtact,
-                emob_no=emob_no, eemail=eemail
-            )
+            Supplier.objects.create(name=name, address=address, contact=contact, mob_no=mob_no, email=email, ename=ename, econtact=econtact,
+                                    emob_no=emob_no, eemail=eemail
+                                    )
             files()
             return redirect('supplier-list')
     context = {
@@ -172,34 +161,31 @@ class SupplierListView(ListView):
     context_object_name = 'supplier'
 
 
-
-
 def update_supplier(request, pk):
-	queryset = Supplier.objects.get(id=pk)
-	form = SupplierUpdateForm(instance=queryset)
-	if request.method == 'POST':
-		form = SupplierUpdateForm(request.POST, instance=queryset)
-		if form.is_valid():
-			form.save()
-			return redirect('supplier-list')
-
-	context = {
-		'form':form,
+    queryset = Supplier.objects.get(id=pk)
+    form = SupplierUpdateForm(instance=queryset)
+    if request.method == 'POST':
+        form = SupplierUpdateForm(request.POST, instance=queryset)
+        if form.is_valid():
+            form.save()
+            return redirect('supplier-list')
+    if form.is_valid():
+        files()
+    context = {
+        'form': form,
         'files': files()
-	}
-	return render(request, 'store/create_supplier.html', context)  
+    }
+    return render(request, 'store/create_supplier.html', context)
 
 
 def delete_supplier(request, pk):
-	queryset = Supplier.objects.get(id=pk)
-	if request.method == 'POST':
-		queryset.delete()
-		return redirect('supplier-list')
-	return render(request, 'store/delete_items.html', context={'files': files()})   
-
-
-
-
+    queryset = Supplier.objects.get(id=pk)
+    if request.method == 'POST':
+        queryset.delete()
+        return redirect('supplier-list')
+    if(queryset): 
+        files()    
+    return render(request, 'store/delete_items.html', context={'files': files()})
 
 
 def create_yard(request, pk):
@@ -274,14 +260,10 @@ def create_yard_form(request):
     return render(request, "partials/yard_form.html", context)
 
 
-
-
 class CostListView(ListView):
     model = cost
     template_name = 'store/cost_list.html'
     context_object_name = 'cost'
-
-
 
 
 def create_cost(request):
@@ -301,33 +283,32 @@ def create_cost(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_cost.html', context)    
-
+    return render(request, 'store/create_cost.html', context)
 
 
 def update_cost(request, pk):
-	queryset = cost.objects.get(id=pk)
-	form = CostUpdateform(instance=queryset)
-	if request.method == 'POST':
-		form = CostUpdateform(request.POST, instance=queryset)
+    queryset = cost.objects.get(id=pk)
+    form = CostUpdateform(instance=queryset)
+    if request.method == 'POST':
+        form = CostUpdateform(request.POST, instance=queryset)
 
-		if form.is_valid():
-			form.save()
-			return redirect('cost-list')
-    
-	context = {
-		'form':form,
-        'files': files()
-	}
-	return render(request, 'store/create_cost.html', context)    
+        if form.is_valid():
+            form.save()
+            files()
+            return redirect('cost-list')
+    context = {
+        'form': form,
+    }
+    return render(request, 'store/create_cost.html', context)
 
 
 def delete_cost(request, pk):
-	queryset = cost.objects.get(id=pk)
-	if request.method == 'POST':
-		queryset.delete()
-		return redirect('cost-list')
-	return render(request, 'store/delete_items.html', context={'files': files()})    
+    queryset = cost.objects.get(id=pk)
+    if request.method == 'POST':
+        queryset.delete()
+        files()
+        return redirect('cost-list')   
+    return render(request, 'store/delete_items.html', context={'files': files()})
 
 
 def create_metal(request):
@@ -346,42 +327,51 @@ def create_metal(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_metal.html', context)  
+    return render(request, 'store/create_metal.html', context)
+
 
 def update_metal(request, pk):
-	queryset = metal.objects.get(id=pk)
-	form = MetalUpdateform(instance=queryset)
-	if request.method == 'POST':
-		form = MetalUpdateform(request.POST, instance=queryset)
-		if form.is_valid():
-			form.save()
+    queryset = metal.objects.get(id=pk)
+    form = MetalUpdateform(instance=queryset)
+    if request.method == 'POST':
+        form = MetalUpdateform(request.POST, instance=queryset)
+        if form.is_valid():
+            form.save()
+            files()
+            return redirect('metal-list')
+    context = {
+        'form': form,
+    }
+    return render(request, 'store/create_metal.html', context)
 
-			return redirect('metal-list')    
 
-	context = {
-		'form':form,
-        'files': files()
-	}
-	return render(request, 'store/create_metal.html', context)    
 files()
+
 
 def delete_metal(request, pk):
-	queryset = metal.objects.get(id=pk)
-	if request.method == 'POST':
-		queryset.delete()
-		return redirect('metal-list')
-	return render(request, 'store/delete_items.html',context={'files': files()})      
+    queryset = metal.objects.get(id=pk)
+    if request.method == 'POST':
+        queryset.delete()
+        files() 
+        return redirect('metal-list')
+       
+    return render(request, 'store/delete_items.html', context={'files': files()})
+
 
 files()
+
+
 class MetalListView(ListView):
     model = metal
     template_name = 'store/metal_list.html'
-    context_object_name = 'metal'       
+    context_object_name = 'metal'
+
 
 files()
 
 
 model1 = ""
+
 
 def create_grade(request):
     forms = GradeForm(use_required_attribute=False)
@@ -492,53 +482,49 @@ def create_grade(request):
             recovery = forms.cleaned_data['recovery']
 
             grade.objects.create(
-                name=name, details=details, gradegrp=gradegrp, misc=misc,typeo=typeo, recovery=recovery,metaln=metaln,
-                metalnn=metalnn,metalcn=metalcn, metalc=metalc, metaln1=metaln1, metalc1=metalc1,  metaln2=metaln2, metalc2=metalc2,
-                metaln3=metaln3, metalc3=metalc3,  metaln4=metaln4, metalc4=metalc4,  metaln5=metaln5, metalc5=metalc5,  metaln6=metaln6, metalc6=metalc6, 
-                metaln7=metaln7, metalc7=metalc7,  metaln8=metaln8, metalc8=metalc8,  metaln9=metaln9, metalc9=metalc9,  metaln10=metaln10, metalc10=metalc10,
+                name=name, details=details, gradegrp=gradegrp, misc=misc, typeo=typeo, recovery=recovery, metaln=metaln,
+                metalnn=metalnn, metalcn=metalcn, metalc=metalc, metaln1=metaln1, metalc1=metalc1, metaln2=metaln2, metalc2=metalc2,
+                metaln3=metaln3, metalc3=metalc3, metaln4=metaln4, metalc4=metalc4, metaln5=metaln5, metalc5=metalc5, metaln6=metaln6, metalc6=metalc6,
+                metaln7=metaln7, metalc7=metalc7, metaln8=metaln8, metalc8=metalc8, metaln9=metaln9, metalc9=metalc9, metaln10=metaln10, metalc10=metalc10,
                 metaln11=metaln11, metalc11=metalc11, metaln12=metaln12, metalc12=metalc12, metaln13=metaln13, metalc13=metalc13, metaln14=metaln14, metalc14=metalc14, metaln15=metaln15, metalc15=metalc15,
-                metaln16=metaln16, metalc16=metalc16, metaln17=metaln17, metalc17=metalc17,metaln18=metaln18, metalc18=metalc18,metaln19=metaln19, metalc19=metalc19,
-                metaln20=metaln20, metalc20=metalc20,costn=costn,
-                costnn=costnn,costcn=costcn, costc=costc, costn1=costn1, costc1=costc1,  costn2=costn2, costc2=costc2,
-                costn3=costn3, costc3=costc3,  costn4=costn4, costc4=costc4,  costn5=costn5, costc5=costc5,  costn6=costn6, costc6=costc6, 
-                costn7=costn7, costc7=costc7,  costn8=costn8, costc8=costc8,  costn9=costn9, costc9=costc9,  costn10=costn10, costc10=costc10,
+                metaln16=metaln16, metalc16=metalc16, metaln17=metaln17, metalc17=metalc17, metaln18=metaln18, metalc18=metalc18, metaln19=metaln19, metalc19=metalc19,
+                metaln20=metaln20, metalc20=metalc20, costn=costn,
+                costnn=costnn, costcn=costcn, costc=costc, costn1=costn1, costc1=costc1, costn2=costn2, costc2=costc2,
+                costn3=costn3, costc3=costc3, costn4=costn4, costc4=costc4, costn5=costn5, costc5=costc5, costn6=costn6, costc6=costc6,
+                costn7=costn7, costc7=costc7, costn8=costn8, costc8=costc8, costn9=costn9, costc9=costc9, costn10=costn10, costc10=costc10,
                 costn11=costn11, costc11=costc11, costn12=costn12, costc12=costc12, costn13=costn13, costc13=costc13, costn14=costn14, costc14=costc14, costn15=costn15, costc15=costc15,
-                costn16=costn16, costc16=costc16, costn17=costn17, costc17=costc17,costn18=costn18, costc18=costc18,costn19=costn19, costc19=costc19,
+                costn16=costn16, costc16=costc16, costn17=costn17, costc17=costc17, costn18=costn18, costc18=costc18, costn19=costn19, costc19=costc19,
                 costn20=costn20, costc20=costc20
             )
             files()
             return redirect('grade-list')
         else:
-            print(forms.errors.as_json())               
+            print(forms.errors.as_json())
     context = {
         'form': forms,
         'cost': model1,
     }
     # if request.htmx == 'POST':
-    #     return render(request, 'store/grade/book_form.html', context)       
+    #     return render(request, 'store/grade/book_form.html', context)
 
-    return render(request, 'store/create_grade.html', context) 
+    return render(request, 'store/create_grade.html', context)
 
 # def jsondata(request):
-
 
 
 def show_grade(request):
     gradeobj = grade.objects.all()
     files()
-    context = {'grade':gradeobj}
-    return render(request, './tp.html',context)
+    context = {'grade': gradeobj}
+    return render(request, './tp.html', context)
 
-    
+
 #     return JsonResponse(data,safe = False)
 
 
-
-
-
-def update_grade(request,pk):
-    obj = get_object_or_404(grade,id=pk)
-    form= GradeForm(request.POST or None, instance=obj)
+def update_grade(request, pk):
+    obj = get_object_or_404(grade, id=pk)
+    form = GradeForm(request.POST or None, instance=obj)
 
     context = {'form': form}
 
@@ -549,11 +535,11 @@ def update_grade(request,pk):
         files()
         return redirect('grade-list')
     else:
-        print(form.errors.as_json())    
-    files()    
+        print(form.errors.as_json())
+    files()
     context = {'form': form}
-        
-    return render(request, 'store/create_grade.html',context)
+
+    return render(request, 'store/create_grade.html', context)
 
 
 # data = serializers.serialize("json", grade.objects.all())
@@ -563,20 +549,18 @@ def update_grade(request,pk):
 # a_file.close()
 
 
-
 def delete_grade(request, pk):
-	queryset = grade.objects.get(id=pk)
-	if request.method == 'POST':
-		queryset.delete()
-		return redirect('grade-list')
-	return render(request, 'store/delete_items.html',context={'files': files()})      
+    queryset = grade.objects.get(id=pk)
+    if request.method == 'POST':
+        queryset.delete()
+        return redirect('grade-list')
+    return render(request, 'store/delete_items.html', context={'files': files()})
 
 
 class GradeListView(ListView):
     model = grade
     template_name = 'store/grade_list.html'
-    context_object_name = 'grade'     
-
+    context_object_name = 'grade'
 
 
 def Quality_View(request):
@@ -610,20 +594,19 @@ def Quality_View(request):
             metalw19 = forms.cleaned_data['metalw19']
             metalw20 = forms.cleaned_data['metalw20']
 
-
             Quality.objects.create(
-                supplier = supplier, yard=yard, grade=grade1,
+                supplier=supplier, yard=yard, grade=grade1,
                 metalw=metalw, metalw1=metalw1, metalw2=metalw2,
-                 metalw3=metalw3, metalw4=metalw4, metalw5=metalw5, metalw6=metalw6, 
-                 metalw7=metalw7, metalw8=metalw8, metalw9=metalw9, metalw10=metalw10,
-                 metalw11=metalw11, metalw12=metalw12, metalw13=metalw13,  metalw14=metalw14, metalw15=metalw15,
-                 metalw16=metalw16, metalw17=metalw17, metalw18=metalw18, metalw19=metalw19,
-                 metalw20=metalw20
+                metalw3=metalw3, metalw4=metalw4, metalw5=metalw5, metalw6=metalw6,
+                metalw7=metalw7, metalw8=metalw8, metalw9=metalw9, metalw10=metalw10,
+                metalw11=metalw11, metalw12=metalw12, metalw13=metalw13, metalw14=metalw14, metalw15=metalw15,
+                metalw16=metalw16, metalw17=metalw17, metalw18=metalw18, metalw19=metalw19,
+                metalw20=metalw20
             )
             files()
             return redirect('supplier-list')
         else:
-            print(forms.errors.as_json())    
+            print(forms.errors.as_json())
     context = {
         'form': forms,
     }
@@ -698,34 +681,10 @@ def create_quality_form(request):
         "form": form
     }
     return render(request, "partials/quality_form.html", context)
- 
 
 
 files()
 
 
-
 # with open("./data_grade.json", "r") as source, open("./static/assets/js/data_grade.json", "w") as dest:
-#     dest.write(source.read())     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#     dest.write(source.read())
