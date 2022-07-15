@@ -210,7 +210,7 @@
         for (let i = 1; i < 21; i++) {
             var element = ("metaln" +""+ i)
             var a = document.getElementById(element);
-            // console.log(a);
+            console.log(a);
             call(element)            
         }
     }
