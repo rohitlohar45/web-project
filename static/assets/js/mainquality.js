@@ -59,7 +59,7 @@
                 if(value==values){
                     continue;
                 }else{
-                    console.log(value + " " + values);
+                    // console.log(value + " " + values);
                     options += `<option value=${value}>` + data[i][1] + "</option>";
                 }
                 // console.log(document.getElementById(element));
@@ -170,9 +170,9 @@
                                     ele.removeAttribute('hidden')
                                 }
                                 else if(i.startsWith('costc') && field[i]!=0){
-                                    console.log(field[i]);
+                                    // console.log(field[i]);
                                     var ele = document.getElementById('c' + idf)
-                                    console.log('c' + idf);
+                                    // console.log('c' + idf);
                                     // var def = 'costc'+idf
                                     ele.removeAttribute('hidden')
                                 }else{
@@ -233,7 +233,7 @@
                 field = data[j].fields
                 // console.log("field: "  + field.metalcn);
                 for(const i in field){
-                    console.log(field[i]);
+                    // console.log(field[i]);
                     if(field[i]=="SELECT"){
                         
                     }else if(i.startsWith('metal')){
@@ -241,7 +241,7 @@
                         // console.log("field" + field.metalc);
                         element = "metalnn"; call(element,field.metalc)
                         // var element = document.getElementById(i);
-                        console.log("ok");
+                        // console.log("ok");
                         for (let j = 1; j < 21; j++) {
                             var element = ("metaln" +""+ j)
                             // var a = document.getElementById(element);
@@ -301,7 +301,7 @@
 
         for (let i = 1; i < 21; i++) {
             if(i==20){
-                console.log(a);
+                // console.log(a);
             }
             var element = ("costn" +""+ i)
             var a = document.getElementById(element);
@@ -315,12 +315,12 @@
     d.addEventListener("click", function() {
 
         d.addEventListener('change', function(evt) {
-            console.log("listned");
+            // console.log("listned");
             var selectedValue = costn.value;
             var e = document.getElementById('costc') 
 
             c = selectedValue
-            console.log(c);
+            // console.log(c);
             readTextFile(url, function(text) {
                 
                 var data = JSON.parse(text);
