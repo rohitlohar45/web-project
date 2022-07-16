@@ -62,7 +62,7 @@ coverage.xml
 # db.sqlite3-journal
 
 #files
-static/assets/js
+static/assets/js/useful.txt
 
 # Flask stuff:
 instance/

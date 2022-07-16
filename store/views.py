@@ -94,6 +94,12 @@ def files():
     a_file.close()
     with open("./data_metal.json", "r") as source, open("./static/assets/js/data_metal.json", "w") as dest:
         dest.write(source.read())
+    data = list(cost.objects.values_list("id", "name",'rate'))
+    a_file = open("./data_cost.json", "w")
+    json.dump(data, a_file)
+    a_file.close()
+    with open("./data_cost.json", "r") as source, open("./static/assets/js/data_cost.json", "w") as dest:
+        dest.write(source.read())
     # with open("./static/assets/js/data_metal.json","w") as out:
     #     json_serializer.serialize(metal.objects.all(), stream=out)
     # data = list(cost.objects.values_list("id","rate"))

@@ -27,6 +27,7 @@
     let gradeurl = '/static/assets/js/data_grade.json'
     let yardurl = '/static/assets/js/yard.json'
     let metalurl = '/static/assets/js/data_metal.json'
+    let costurl = '/static/assets/js/data_cost.json'
     var room = 1;
     cmetal = 1;
     m = 101;
@@ -39,39 +40,30 @@
             var data = JSON.parse(text);
             var options = ''
             var c = values
+            if(values=="SELECT"){
+                values = 0
+            }
             if(values!=0){
                 for (let i = 0; i < data.length; i++) {
-                    const element = data;
-                    if(c = data[i][0]){
-                        c = data[i][1];
-                        break;
-                    }
-                }
-            }
-            if(values!=0){
-                options += "<option>"+ c  +"</option>"
-            }else{
-                options += "<option>SELECT</option>";
-            }
-            // console.log(element);
-            for (let i = 0; i < data.length; i++) {
-                var value = data[i][0]
-                if(value==values){
-                    continue;
-                }else{
-                    // console.log(value + " " + values);
+                    var value = data[i][0]
                     options += `<option value=${value}>` + data[i][1] + "</option>";
                 }
-                // console.log(document.getElementById(element));
+                document.getElementById(element).innerHTML = options;
+                document.getElementById(element).value =values;
+            }else{
+                options += "<option>SELECT</option>";
+                for (let i = 0; i < data.length; i++) {
+                    var value = data[i][0]
+                    if(value==values){
+                        
+                    }else{
+                        options += `<option value=${value}>` + data[i][1] + "</option>";
+                    }
+                    document.getElementById(element).innerHTML = options;
+                }
             }
-            document.getElementById(element).innerHTML = options;
         })
-    }
-  
-    // var metaln = document.getElementById('metaln')
-    // console.log(metaln.value);
-
-    
+    }    
         array = ['c',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
         htmx.onLoad(function(content){
         var supplier = document.getElementById('id_supplier')
@@ -219,58 +211,50 @@
     var metal = document.getElementById('metaln')
 
     if(metal){
-        // console.log(metal.value);
         let windowurl = window.location.href
 
-        if(windowurl.includes('update')){
-            var c = windowurl.charAt(windowurl.length-2);
-            var j = 0
-            readTextFile(gradeurl, function(text) {
-                var data = JSON.parse(text);
-                while(c!=data[j].pk && j<data.length){
-                    j++;
-                }
-                field = data[j].fields
-                // console.log("field: "  + field.metalcn);
-                for(const i in field){
-                    // console.log(field[i]);
-                    if(field[i]=="SELECT"){
-                        
-                    }else if(i.startsWith('metal')){
-                        var element = "metaln"; call(element,field.metalcn)
-                        // console.log("field" + field.metalc);
-                        element = "metalnn"; call(element,field.metalc)
-                        // var element = document.getElementById(i);
-                        // console.log("ok");
-                        for (let j = 1; j < 21; j++) {
-                            var element = ("metaln" +""+ j)
-                            // var a = document.getElementById(element);
-                            // console.log(a);
-                            call(element,0) 
-                            // console.log(a);            
-                        }
-                        
-                        // metal.innerHTML = field[i]
+            if(windowurl.includes('update')){
+                var ele = document.getElementById('metaln')
+                readTextFile(gradeurl, function(text) {
+                    var c = windowurl.charAt(windowurl.length-2)
+                    var data = JSON.parse(text);
+                    var a=0
+                    while(c!=data[a].pk){
+                        a++;
                     }
-                }
-            })
-        }else{
-            var element = "metaln"; call(element,0)
-            var element = "metalnn"; call(element,0)
-    
-            for (let i = 1; i < 21; i++) {
-                var element = ("metaln" +""+ i)
-                var a = document.getElementById(element);
-                // console.log(a);
-                call(element,0)            
-            }
-        }
 
-        // if(windowurl.includes('update')){
-        //     pass
-        // }else{
-        // }
-        
+                    var field = data[a].fields
+
+                    var element = "metaln"; call(element,field.metaln)
+                    var element = "metalnn"; call(element,field.metalnn)
+                    var metal_data = {
+                        'metaln1': field.metaln1
+                    }
+                    for(const i in field){
+                        if(i.startsWith('metaln')){
+                            metal_data[i] = field[i]
+                        }
+                    }
+                    for (let i = 1; i < 21; i++) {
+                        var element = ("metaln" +""+ i)
+                        var a = document.getElementById(element);
+                        call(element,metal_data[element])            
+                    }
+
+                })
+                
+            }else{
+                var element = document.getElementById('metaln'); call('metaln',0)
+                element = document.getElementById('metalnn'); call('metalnn',0)
+
+                for (let i = 1; i < 21; i++) {
+                    var ele = ("metaln" + "" + i)
+                    element = document.getElementById(ele)
+                    call(ele,0)
+                    
+                }
+
+            }
 
     }
 
@@ -278,37 +262,98 @@
 
     var d = document.getElementById('costn')
     if(d){
-        
-        function callc(element){
-            readTextFile(url, function(text) {
+        let windowurl = window.location.href
+
+        function callc(element, values){
+            readTextFile(costurl, function(text) {
                 var data = JSON.parse(text);
-                var options = "<option>SELECT</option>";
-                for (let i = 0; i < data.length; i++) {
-                    // if(data[i][0]==supplier.value){
-                        var option = document.createElement("option");
-                        var value = i
-                        // console.log(value);
-                        options += `<option value=${value}>` + data[i][0] + "</option>";
-                        // console.log(`<option value=${value}>`);
-                        // console.log(options);
-                        // console.log(document.getElementById(element));
+                var options = ''
+                var c = values
+                if(values=="SELECT"){
+                    values = 0
+                }
+                // console.log(values);
+                if(values!=0){
+                    for (let i = 0; i < data.length; i++) {
+                        var value = data[i][0]
+                        options += `<option value=${value}>` + data[i][1] + "</option>";
+                    }
                     document.getElementById(element).innerHTML = options;
+                    document.getElementById(element).value = values;
+                }else{
+                    options += "<option>SELECT</option>";
+                    for (let i = 0; i < data.length; i++) {
+                        var value = data[i][0]
+                        if(value==values){
+                            
+                        }else{
+                            options += `<option value=${value}>` + data[i][1] + "</option>";
+                        }
+                        document.getElementById(element).innerHTML = options;
+                        
+                    }
                 }
             })
-        }
-        var element = "costn"; callc(element)
-        element = "costnn"; callc(element)
 
-        for (let i = 1; i < 21; i++) {
-            if(i==20){
-                // console.log(a);
+                
+        }
+        if(windowurl.includes('update')){
+            // var ele = document.getElementById('metaln')
+            readTextFile(gradeurl, function(text) {
+                var c = windowurl.charAt(windowurl.length-2)
+                var data = JSON.parse(text);
+                var a=0
+                while(c!=data[a].pk){
+                    a++;
+                }
+
+                var field = data[a].fields
+
+                var element = "costn"; callc(element,field.costn)
+                var element = "costnn"; callc(element,field.costnn)
+                var cost_data = {
+                    'costn1': field.costn1
+                }
+                for(const i in field){
+                    if(i.startsWith('costn')){
+                        cost_data[i] = field[i]
+                    }
+                }
+                // console.log(cost_data['costn']);
+                for (let i = 1; i < 21; i++) {
+                    var element = ("costn" +""+ i)
+                    var a = document.getElementById(element);
+                    // console.log(cost_data[element]+ " " + element);
+                    callc(element,cost_data[element])            
+                }
+
+            })
+            
+        }else{
+            var element = document.getElementById('costn'); callc('costn',0)
+            element = document.getElementById('costnn'); callc('costnn',0)
+
+            for (let i = 1; i < 21; i++) {
+                var ele = ("costn" + "" + i)
+                element = document.getElementById(ele)
+                callc(ele,0)
+                
             }
-            var element = ("costn" +""+ i)
-            var a = document.getElementById(element);
-            callc(element)
+
+        }
+        // var element = "costn"; callc(element)
+        // element = "costnn"; callc(element)
+
+        // for (let i = 1; i < 21; i++) {
+        //     if(i==20){
+        //         // console.log(a);
+        //     }
+        //     var element = ("costn" +""+ i)
+        //     var a = document.getElementById(element);
+        //     callc(element)
 
             
-        }
+        // }
 
 
 
@@ -320,21 +365,29 @@
             var e = document.getElementById('costc') 
 
             c = selectedValue
-            // console.log(c);
-            readTextFile(url, function(text) {
-                
-                var data = JSON.parse(text);
-                
-                for (let i = 0; i < data.length; i++) {
+            if(c=='SELECT'){
+                e.value=0
+            }else{
+                console.log(c + "   yehi");
+                readTextFile(costurl, function(text) {
                     
-                    if(data[i][0]==c){
-                        c = data[i][1]
-                    }   
-                }
-                e.value = c
-                // console.log("jns")
-                e.value = data[c][1]
-            });
+                    var data = JSON.parse(text);
+                    // console.log(data);
+                    for (let i = 0; i < data.length; i++) {
+                        
+                        if(data[i][0]==c){
+                            c = data[i][2]
+                            console.log(c + " " + i);
+                        }   
+                    }
+                    e.value = c
+                    if(e.value==null){
+                        e.value = 0
+                    }
+                    // console.log("jns")
+                    // e.value = data[c][1]
+                });
+            }
         });
     }, false);
     setTimeout(() => {
@@ -351,17 +404,34 @@
     if(dn){
     dn.addEventListener("click", function() {
     dn.addEventListener('change', function(evt) {
-        console.log("listned");
+
         var selectedValue = costnn.value;
         
         var e = document.getElementById('costcn')
+        e.value = 0
+        console.log(e.value);
         
         c = selectedValue
-        readTextFile(url, function(text) {
-            
-            var data = JSON.parse(text);
-            e.value = data[c][1]
-        });
+        if(c=='SELECT'){
+            e.value=0
+        }else{
+            console.log(e.value);
+            readTextFile(costurl, function(text) {
+                
+                var data = JSON.parse(text);
+                // console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    
+                    if(data[i][0]==c){
+                        c = data[i][2]
+                        // console.log(c + " " + i);
+                    }   
+                }
+                e.value = c
+                // console.log("jns")
+                // e.value = data[c][1]
+            });
+        }
     });
 }, false);
     setTimeout(() => {
@@ -389,10 +459,17 @@
         var e = document.getElementById('costc1')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -413,10 +490,17 @@
         var e = document.getElementById('costc2')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -438,10 +522,17 @@
         var e = document.getElementById('costc3')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -463,10 +554,17 @@
         var e = document.getElementById('costc4')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -490,10 +588,17 @@
         var e = document.getElementById('costc5')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -515,10 +620,17 @@
         var e = document.getElementById('costc6')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -540,10 +652,17 @@
         var e = document.getElementById('costc7')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -566,10 +685,17 @@
         var e = document.getElementById('costc8')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -592,10 +718,17 @@
         var e = document.getElementById('costc9')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -616,10 +749,17 @@
         var e = document.getElementById('costc10')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -639,10 +779,17 @@
         var e = document.getElementById('costc11')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -662,10 +809,17 @@
         var e = document.getElementById('costc12')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);
@@ -686,10 +840,17 @@
         var e = document.getElementById('costc13')
         
         c = selectedValue
-        readTextFile(url, function(text) {
+        readTextFile(costurl, function(text) {
             
             var data = JSON.parse(text);
-            e.value = data[c][1]
+            for (let i = 0; i < data.length; i++) {
+                    
+                if(data[i][0]==c){
+                    c = data[i][2]
+                    console.log(c + " " + i);
+                }   
+            }
+            e.value = c
         });
     });
 }, false);

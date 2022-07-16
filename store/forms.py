@@ -311,6 +311,10 @@ MODEL_CHOICES = {
 class GradeForm(forms.ModelForm):
     name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
     misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+    recovery = forms.CharField(label='Recovery', widget=forms.TextInput(attrs={'class':'form-control','id':'name'}), required=False)
+    costcn = forms.IntegerField(label='Cost', widget=forms.TextInput(attrs={'class':'form-control','id':'costcn'}), required=False)
+
+
 
     class Meta:
         model = grade
@@ -335,7 +339,6 @@ class GradeForm(forms.ModelForm):
         #         inital=lambda form: form.MODEL_CHOICES[form["costn"].value()],
                 
         # ),
-        metaln = forms.ChoiceField()
 
         widgets = {
             'name': forms.TextInput(attrs={
@@ -647,6 +650,8 @@ class GradeForm(forms.ModelForm):
 class GradeUpdateform(forms.ModelForm):
     name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'name',}),validators=[RegexValidator(r'^[a-zA-ZÀ-ÿ\s]*$', message='Only letters are allowed')] )
     misc = forms.CharField(label='Miscellaneous',widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'misc',}), required=False)
+    recovery = forms.CharField(label='Recovery', widget=forms.TextInput(attrs={'class':'form-control','id':'required'}), required=False)
+    costcn = forms.IntegerField(label='Cost', widget=forms.TextInput(attrs={'class':'form-control','id':'costcn'}), required=False)
 
     class Meta:
         model = grade
