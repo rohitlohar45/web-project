@@ -132,9 +132,20 @@
                 c = selectedValue
                 var i= 0
                 
+                var cdata;
+
+                readTextFile(costurl, function(text) {
+                    var data = JSON.parse(text);
+                    // console.log(data);
+                    cdata = data;
+                })
+
+
 
                 readTextFile(gradeurl, function(text) {
                     var data = JSON.parse(text);
+                    // var cdata = JSON.parse(costurl);
+                    console.log(cdata);
                     while(c!=data[i].pk && i<data.length){
                         c = selectedValue
                         i++;
@@ -170,6 +181,12 @@
                                 }else{
                                     name.style.display = 'inline-block'
                                 }
+
+                                for (let i = 0; i < array.length; i++) {
+                                    const element = array[i];
+                                    
+                                }
+
                                 name.innerHTML =  field[i]
                                 if(i=='typeo'){
                                         if(field[i]==1){

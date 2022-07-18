@@ -39,7 +39,7 @@ class Yard(models.Model):
 class cost(models.Model):
     name = models.CharField(max_length=120)
     shortform = models.CharField(max_length=120)
-    rate = models.IntegerField()
+    rate = models.FloatField(null=True, default=0, )
     misc = models.CharField(max_length=120)
 
     def __str__(self):
@@ -198,7 +198,7 @@ class Quality(models.Model):
     
     grade = models.ForeignKey(grade, on_delete=models.CASCADE)
     
-    metalw = models.FloatField(null=True, default=0, )
+    metalw = models.FloatField(default=0, )
     metalwc = models.FloatField(null=True, default=0, )
     metalw1 = models.FloatField(null=True, default=0, )
     metalw2 = models.FloatField(null=True, default=0, )

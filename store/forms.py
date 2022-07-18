@@ -963,7 +963,8 @@ class GradeUpdateform(forms.ModelForm):
 
 
 class QualityForm(forms.ModelForm):
-     class Meta:
+    metalw = forms.IntegerField(label='',widget=forms.TextInput(attrs={'class':'form-control','id':'metalw'}), required=False)
+    class Meta:
         model = Quality
         
         fields = [
@@ -981,10 +982,10 @@ class QualityForm(forms.ModelForm):
                 'class': 'form-select col', 'id': 'grade'
             }),
             'metalw': forms.NumberInput(attrs={
-               'class':'appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white', 'id': 'metalw'
+                'class':'form-control col', 'id': 'metalw'
             }),
             'metalwc': forms.NumberInput(attrs={
-                'class':'form-control col', 'id': 'metalw1'
+                'class':'form-control col', 'id': 'metalwc'
             }),
             'metalw1': forms.NumberInput(attrs={
                 'class': 'form-control col', 'id': 'metalw1',
@@ -1066,4 +1067,4 @@ class QualityForm(forms.ModelForm):
             'duty': forms.NumberInput(attrs={
                 'class': 'form-control col', 'id': 'duty',
             }),
-        }
+        }  

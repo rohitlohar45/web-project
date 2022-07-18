@@ -16,6 +16,7 @@ from .views import (
     create_yard,
     SupplierListView,
     delete_quality,
+    demo,
     detail_quality,
     # demoview,
     show_grade,
@@ -62,7 +63,8 @@ urlpatterns = [
     # path('ajax/load-branches/', load_yard, name='ajax_load_yard'),
 
 
-    # path('overhead_cost/', create_overheadCost, name='create-overheadcost'),
+    path('demo/', demo, name='demo'),
+    
     path('create_cost/', create_cost, name='create_cost'),
     path('cost-list/', CostListView.as_view(), name='cost-list'),
     path('create_metal/', create_metal, name='create_metal'),

@@ -3,12 +3,11 @@
 {% block title %}Dashboard{% endblock title %}
 
 {% block content %}
-<!-- Widgets  -->
-<!-- /Widgets -->
+
 
 <div class="clearfix"></div>
 
-<!-- Orders -->
+
 <div class="orders">
     <div class="row">
         <div class="col-xl-12">
@@ -17,22 +16,20 @@
                     <div class="table-stats order-table ov-h">
                         <div class="list-group">
                             <a href="{% url 'supplier-list' %}" class="list-group-item active">Supplier</a>
-                            
+
                             <a href="{% url 'metal-list' %}" class="list-group-item">Metal</a>
                             <a href="{% url 'cost-list' %}" class="list-group-item">Cost</a>
                             <a href="{% url 'grade-list' %}" class="list-group-item">Grade</a>
-                            <a href="{% url 'quality-list' %}" class="list-group-item ">Quality List</a>
+                            <!-- <a href="{% url 'quality-list' %}" class="list-group-item ">Quality List</a> -->
                         </div>
-                        <!-- <div class="list-group">
-                        </div> -->
-                    </div> <!-- /.table-stats -->
+
+                    </div>
                 </div>
-            </div> <!-- /.card -->
-        </div> <!-- /.col-lg-8 -->
+            </div>
+        </div>
 
 
     </div>
 </div>
 
-<!-- /.orders -->
 {% endblock content %}

@@ -184,6 +184,16 @@ def update_supplier(request, pk):
     return render(request, 'store/create_supplier.html', context)
 
 
+
+
+
+
+
+def demo(request):
+    form = SupplierForm()
+
+    return render(request ,'store/demo.html',context={'form': form})
+
 def delete_supplier(request, pk):
     queryset = Supplier.objects.get(id=pk)
     if request.method == 'POST':
