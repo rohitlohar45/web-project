@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}Create Supplier{% endblock title %}
@@ -78,11 +78,11 @@
                             <h2 style="margin-bottom:20px ;">Export Details:</h2>
                             <div class="row">
                                 <div class="form-group col">
-                                    <div style="margin: 10px;"></div>
+                                    <div class="form-group col-md-6"style="margin: 10px;"></div>
                                     {{ form.ename|as_crispy_field }}
+                                    {{ form.econtact|as_crispy_field }}
                                     <div style="margin: 10px;"></div>
                                         <!-- <label for="econtact" class="control-label mb-1 asterisk">Contact Person<span class="asteriskField">*</span></label> -->
-                                    {{ form.econtact|as_crispy_field }}
                                 </div>
                                 <div class="form-group col">
                                     <div style="margin: 10px;"></div>

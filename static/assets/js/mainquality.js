@@ -11,18 +11,6 @@
         rawFile.send(rawFile.responseText);
     }
 
-
-
-    
-
-//     fields = [
-//             'name','details','gradegrp','misc','metalc','costc','metaln','typeo','recovery','metalcn','metalnn',
-//             'metaln1','metalc1','metaln2','metalc2','metaln3','metalc3','metaln4','metalc4','metaln5','metalc5',
-//             'metaln6','metalc6','metaln7','metalc7','metaln8','metalc8','metaln9','metalc9','metaln10','metalc10',
-//             'metaln11','metalc11','metaln12','metalc12','metaln13','metalc13','metaln14','metalc14','metaln15','metalc15',
-//             'metaln16','metalc16','metaln17','metalc17','metaln18','metalc18','metaln19','metalc19','metaln20','metalc20',
-// ]
-
     let url = '/static/assets/js/data.json'
     let gradeurl = '/static/assets/js/data_grade.json'
     let yardurl = '/static/assets/js/yard.json'
@@ -126,18 +114,23 @@
         if(gr){
         gr.addEventListener("click", function() {
             gr.addEventListener('change', function(evt) {
-                // console.log("listned");
+                // 
                 var selectedValue = gr.value;
                 // console.log(selectedValue);
                 c = selectedValue
                 var i= 0
                 
-                var cdata;
+                var cdata,mdata;
 
                 readTextFile(costurl, function(text) {
                     var data = JSON.parse(text);
                     // console.log(data);
                     cdata = data;
+                })
+                readTextFile(metalurl, function(text) {
+                    var data = JSON.parse(text);
+                    // console.log(data);
+                    mdata = data;
                 })
 
 
@@ -145,7 +138,7 @@
                 readTextFile(gradeurl, function(text) {
                     var data = JSON.parse(text);
                     // var cdata = JSON.parse(costurl);
-                    console.log(cdata);
+                    // console.log(cdata);
                     while(c!=data[i].pk && i<data.length){
                         c = selectedValue
                         i++;
@@ -181,13 +174,28 @@
                                 }else{
                                     name.style.display = 'inline-block'
                                 }
-
-                                for (let i = 0; i < array.length; i++) {
-                                    const element = array[i];
-                                    
+                                // console.log();
+                                if(i.startsWith('costn')){
+                                    var m = 0
+                                    var cost_value = field[i]
+                                    // console.log(cost_value);
+                                    while(cost_value!=cdata[m][0]){
+                                        m++;
+                                    }
+                                    name.innerHTML = cdata[m][1]
+                                    // console.log(cdata[0].fields);
+                                }else if(i.startsWith('metaln')){
+                                    var m = 0
+                                    var metal_value = field[i]
+                                    // console.log(metal_value);
+                                    while(metal_value!=mdata[m][0]){
+                                        m++;
+                                    }
+                                    name.innerHTML = mdata[m][1]
+                                }else{
+                                    name.innerHTML =  field[i]
                                 }
 
-                                name.innerHTML =  field[i]
                                 if(i=='typeo'){
                                         if(field[i]==1){
                                             name.innerHTML = 'Ingot'
@@ -377,7 +385,7 @@
     d.addEventListener("click", function() {
 
         d.addEventListener('change', function(evt) {
-            // console.log("listned");
+            // 
             var selectedValue = costn.value;
             var e = document.getElementById('costc') 
 
@@ -385,7 +393,6 @@
             if(c=='SELECT'){
                 e.value=0
             }else{
-                console.log(c + "   yehi");
                 readTextFile(costurl, function(text) {
                     
                     var data = JSON.parse(text);
@@ -394,7 +401,7 @@
                         
                         if(data[i][0]==c){
                             c = data[i][2]
-                            console.log(c + " " + i);
+                            // 
                         }   
                     }
                     e.value = c
@@ -426,13 +433,13 @@
         
         var e = document.getElementById('costcn')
         e.value = 0
-        console.log(e.value);
+        // console.log(e.value);
         
         c = selectedValue
         if(c=='SELECT'){
             e.value=0
         }else{
-            console.log(e.value);
+            // console.log(e.value);
             readTextFile(costurl, function(text) {
                 
                 var data = JSON.parse(text);
@@ -441,7 +448,7 @@
                     
                     if(data[i][0]==c){
                         c = data[i][2]
-                        // console.log(c + " " + i);
+                        // 
                     }   
                 }
                 e.value = c
@@ -470,7 +477,7 @@
     if(d1){
     d1.addEventListener("click", function() {
     d1.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn1.value;
         
         var e = document.getElementById('costc1')
@@ -483,7 +490,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    // 
                 }   
             }
             e.value = c
@@ -501,7 +508,7 @@
     if(d2){
     d2.addEventListener("click", function() {
     d2.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn2.value;
         
         var e = document.getElementById('costc2')
@@ -514,7 +521,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -533,7 +540,7 @@
     if(d3){
     d3.addEventListener("click", function() {
     d3.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn3.value;
         
         var e = document.getElementById('costc3')
@@ -546,7 +553,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -565,7 +572,7 @@
     if(d4){
     d4.addEventListener("click", function() {
     d4.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn4.value;
         
         var e = document.getElementById('costc4')
@@ -578,7 +585,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -599,7 +606,7 @@
     if(d5){
     d5.addEventListener("click", function() {
     d5.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn5.value;
         
         var e = document.getElementById('costc5')
@@ -612,7 +619,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -631,7 +638,7 @@
     if(d6){
     d6.addEventListener("click", function() {
     d6.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn6.value;
         
         var e = document.getElementById('costc6')
@@ -644,7 +651,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -663,7 +670,7 @@
     if(d7){
     d7.addEventListener("click", function() {
     d7.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn7.value;
         
         var e = document.getElementById('costc7')
@@ -676,7 +683,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -696,7 +703,7 @@
     if(d8){
     d8.addEventListener("click", function() {
     d8.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn8.value;
         
         var e = document.getElementById('costc8')
@@ -709,7 +716,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -729,7 +736,7 @@
     if(d9){
     d9.addEventListener("click", function() {
     d9.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn9.value;
         
         var e = document.getElementById('costc9')
@@ -742,7 +749,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -760,7 +767,7 @@
     if(d10){
     d10.addEventListener("click", function() {
     d10.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn10.value;
         
         var e = document.getElementById('costc10')
@@ -773,7 +780,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -790,7 +797,7 @@
     if(d11){
     d11.addEventListener("click", function() {
     d11.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn11.value;
         
         var e = document.getElementById('costc11')
@@ -803,7 +810,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -820,7 +827,7 @@
     if(d12){
     d12.addEventListener("click", function() {
     d12.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn12.value;
         
         var e = document.getElementById('costc12')
@@ -833,7 +840,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
@@ -851,7 +858,7 @@
     if(d13){
     d13.addEventListener("click", function() {
     d13.addEventListener('change', function(evt) {
-        console.log("listned");
+        
         var selectedValue = costn13.value;
         
         var e = document.getElementById('costc13')
@@ -864,7 +871,7 @@
                     
                 if(data[i][0]==c){
                     c = data[i][2]
-                    console.log(c + " " + i);
+                    
                 }   
             }
             e.value = c
