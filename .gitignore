@@ -64,6 +64,10 @@ coverage.xml
 #files
 static/assets/js/useful.txt
 
+
+static/assets/node_modules
+
+
 # Flask stuff:
 instance/
 .webassets-cache

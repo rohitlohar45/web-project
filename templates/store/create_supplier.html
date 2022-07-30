@@ -31,72 +31,78 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
-<div class="">
-    <div class="-lg-12">
+<div class="row">
+    <div class="col-xl-12">
         <div class="card">
-            <div class="card-header">
-                <strong class="card-title">Create Supplier</strong>
-            </div>
             <div class="card-body">
                 <div id="pay-invoice">
                     <div class="card-body">
                         <form action="#" method="post" novalidate="novalidate">
-                            {% csrf_token %}   
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
+                            {% csrf_token %}
+                            <h6 class="heading-small text-muted mb-4">Supplier Information</h6>
+                            <div class="pl-lg-4">
+                              <div class="row">
+                                <div class="col-lg-4">
+                                  <div class="form-group">
                                     {{ form.name|as_crispy_field }}
-                                    {{ form.contact|as_crispy_field }}
+                                  </div>
                                 </div>
-                                <!-- <div class="form-row"> -->
-                                <div class="form-group col-md-6">
-                                    {{ form.address|as_crispy_field }}
+                                <div class="col-lg-4">
+                                  <div class="form-group">{{ form.email|as_crispy_field }}
+                                  </div>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="form-group">
                                     {{ form.mob_no|as_crispy_field }}
+                                  </div>
                                 </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    {{ form.contact|as_crispy_field }}
+                                  </div>
                                 </div>
-                                <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    {{ form.email|as_crispy_field }}
-                            </div></div>                         
-                            <!-- <div class="form-group ">
-                                <label for="name" class="control-label mb-1 ">Name</label>
-                                {{ form.name }}
-                                <label for="address" class="control-label mb-1 ">Address</label>
-                                {{ form.address }}
+                                <div class="col-lg-6">
+                                  <div class="form-group">{{ form.address|as_crispy_field }}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                
                             </div>
-                            <div class="form-group ">
-                                <label for="contact" class="control-label mb-1 ">Contact</label>
-                                {{ form.contact }}
-                                <div style="margin: 10px;"></div>
-                                <label for="mob_no" class="control-label mb-1 ">Mobile Number</label>
-                                {{ form.mob_no }}
+                            <hr class="my-4" />
+                            <!-- Address -->
+                            <h6 class="heading-small text-muted mb-4">Export information</h6>
+                            <div class="pl-lg-4">
+                              <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                      {{ form.ename|as_crispy_field }}
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">{{ form.eemail|as_crispy_field }}
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      {{ form.emob_no|as_crispy_field }}
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">{{ form.econtact|as_crispy_field }}
+                                    </div>
+                                  </div>
+                              </div>
+                              </div>
                             </div>
-                            <div class="form-group ">
-                                <div style="margin: 10px;"></div>
-                                <label for="email" class="control-label mb-1 ">Email</label>
-                                {{ form.email }}
-                            </div> -->
-                            <h2 style="margin-bottom:20px ;">Export Details:</h2>
-                            <div class="row">
-                                <div class="form-group col">
-                                    <div class="form-group col-md-6"style="margin: 10px;"></div>
-                                    {{ form.ename|as_crispy_field }}
-                                    {{ form.econtact|as_crispy_field }}
-                                    <div style="margin: 10px;"></div>
-                                        <!-- <label for="econtact" class="control-label mb-1 asterisk">Contact Person<span class="asteriskField">*</span></label> -->
-                                </div>
-                                <div class="form-group col">
-                                    <div style="margin: 10px;"></div>
-                                    {{ form.emob_no|as_crispy_field }}
-                                    <div style="margin: 10px;"></div>
-                                    {{ form.eemail|as_crispy_field }}
-                                </div>
-                            </div>
+                            <hr class="my-4" />
                             <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info">
                                     <span id="payment-button-amount">Create Supplier</span>
                                 </button>
                             </div>
-                        </form>
+                          </form>
+                        
                     </div>
                 </div>
 

@@ -65,23 +65,23 @@
                                             <tr hidden id="c">
                                                 <td id="metaln"></td>
                                                 <td id="metalc"></td>
-                                                <td id="metalw">{{form.metalw|as_crispy_field}}</td>
+                                                <td id="metalw">{{form.metalwc}}</td>
                                             </tr>
                                             <tr hidden id="n">
                                                 <td id="metalnn"></td>
                                                 <td id="metalcn"></td>
-                                                <td id="metalwc"> {{form.metalwc}}</td>
+                                                <td id="metalwc"> {{form.metalw}}</td>
                                             </tr>
                                             <tr hidden id="1">
                                                 <td>{{grad.metaln1}}</td>
                                                 <td>{{grad.metalc1}}</td>
-                                                <td id="metalw1">{{form.metalw2}}</td>
+                                                <td id="metalw1">{{form.metalw1}}</td>
                                             </tr>
                                             <tr hidden>
                                                 {% if grad.metalc2 != 0 %}
                                                 <td>{{grad.metaln2}}</td>
                                                 <td>{{grad.metalc2}}</td>
-                                                <td id="metalw2">{{form.metalw1}}</td>
+                                                <td id="metalw2">{{form.metalw2}}</td>
                                                 {% endif %}
                                             </tr>
                                             <tr hidden>

@@ -963,7 +963,6 @@ class GradeUpdateform(forms.ModelForm):
 
 
 class QualityForm(forms.ModelForm):
-    metalw = forms.IntegerField(label='',widget=forms.TextInput(attrs={'class':'form-control','id':'metalw'}), required=False)
     class Meta:
         model = Quality
         

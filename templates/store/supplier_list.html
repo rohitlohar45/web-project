@@ -30,19 +30,20 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
+
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
-            <div class="card-body inline">
-                <h4>Supplier List</h4>
-                <a href="{% url 'create-supplier' %}">
-                    <button id="payment-button" type="submit" class="btn btn-lg btn-outline-primary float-right">Create
-                        Supplier</button></a>
+            <!-- <div class="card-body inline"> -->
+                <div class="card-body">
+                    <h2 class="box-title">Supplier</h2>
+                    <a href="{% url 'create-supplier' %}">
+                        <button id="payment-button" type="submit" class="btn btn-lg btn-outline-primary float-right">Create Supplier</button></a>
+                </div>
                 <!--  -->
-            </div>
             <div class="card-body">
                 <div class="table-stats order-table" style="overflow-x:auto;">
-                    <table class="table ">
+                    <!-- <table class="table ">
                         <thead>
                             <tr>
                                 <th>Supplier Id</th>
@@ -83,14 +84,54 @@
                                 <td>{{ supplier.econtact }}</td>
                                 <td>{{ supplier.emob_no }}</td>
                             </tr> -->
-                            {% endfor %}
+                            <!-- {% endfor %}
                             {% else %}
                             <tr>
                                 <td>No Supplier Data</td>
                             </tr>
                             {% endif %}
                         </tbody>
-                    </table>
+                    </table> -->
+                    <table class="table align-items-center">
+                        <thead class="thead-light">
+                          <tr>
+                            <th>Supplier Id</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th></th>
+                            <th >Update</th>
+                            <th></th>
+                            <th >Delete</th>
+                            <th></th>
+                            <th >Create Yard</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% if supplier %}
+                          {% for supplier in supplier %}
+                          <tr>
+                              <td>{{ supplier.id}}</td>
+                              <td>{{ supplier.name }}</td>
+                              <td>{{ supplier.contact }}</td>
+                              <td></td>
+                              <td><a href="{% url 'update_supplier' supplier.id  %}"><button
+                                          type="submit" class="btn btn-sm btn-info">Update</button></a>
+                              <td>
+                              <td><a href="{% url 'delete_supplier' supplier.id  %}"><button
+                                          type="submit" class="btn btn-sm btn-info">Delete</button></a>
+                              <td>
+                              <td><a href="{% url 'supplier' supplier.id %}"><button type="submit"
+                                          class="btn btn-sm btn-info">Create Yard</button></a>
+                              <td>
+                          </tr>
+                          {% endfor %}
+                          {% else %}
+                          <tr>
+                              <td>No Supplier Data</td>
+                          </tr>
+                          {% endif %}
+                      </tbody>
+                      </table>
                 </div> <!-- /.table-stats -->
             </div>
         </div> <!-- /.card -->

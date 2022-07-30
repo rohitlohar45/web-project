@@ -59,8 +59,8 @@
                                 <td>{{ field.name }}</td>
                                 <td>{{ field.shortform }}</td>
                                 <td>{{ field.misc }}</td>
-                                <td><a href="{% url 'update_metal' field.id  %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info btn-block">Update</button></a><td>
-                                <td><a href="{% url 'delete_metal' field.id  %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info btn-block">Delete</button></a><td>  
+                                <td><a href="{% url 'update_metal' field.id  %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info">Update</button></a><td>
+                                <td><a href="{% url 'delete_metal' field.id  %}"><button id="payment-button" type="submit" class="btn btn-sm btn-info">Delete</button></a><td>  
                             </tr>
                             {% endif %} 
                             {% endfor %}

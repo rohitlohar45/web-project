@@ -30,7 +30,7 @@ var Layout = (function() {
     function pinSidenav() {
         $('.sidenav-toggler').addClass('active');
         $('.sidenav-toggler').data('action', 'sidenav-unpin');
-        $('body').removeClass('g-sidenav-hidden').addClass('g-sidenav-show g-sidenav-pinned');
+        $('body').removeClass('g-sidenav-hidden')
         $('body').append('<div class="backdrop d-xl-none" data-action="sidenav-unpin" data-target='+$('#sidenav-main').data('target')+' />');
 
         // Store the sidenav state in a cookie session
@@ -40,7 +40,7 @@ var Layout = (function() {
     function unpinSidenav() {
         $('.sidenav-toggler').removeClass('active');
         $('.sidenav-toggler').data('action', 'sidenav-pin');
-        $('body').removeClass('g-sidenav-pinned').addClass('g-sidenav-hidden');
+        $('body').removeClass('g-sidenav-show g-sidenav-pinned').addClass('g-sidenav-hidden');
         $('body').find('.backdrop').remove();
 
         // Store the sidenav state in a cookie session
@@ -71,7 +71,7 @@ var Layout = (function() {
       $('body').removeClass('g-sidenav-hide').addClass('g-sidenav-hidden');
       $('body').removeClass('g-sidenav-show');
       $(window).resize(function() {
-          if( $('body').hasClass('g-sidenav-show') && !$('body').hasClass('g-sidenav-pinned')) {
+          if( $('body').hasClass('g-sidenav-show') || !$('body').hasClass('g-sidenav-pinned')) {
               $('body').removeClass('g-sidenav-show').addClass('g-sidenav-hidden');
           }
       })
