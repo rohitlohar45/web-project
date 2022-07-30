@@ -58,7 +58,10 @@
         if(supplier){
             
                 var supplier = document.getElementById('id_supplier')
-                
+                console.log(document.getElementById("id_yard").value);
+                if(document.getElementById("id_yard").value!=""){
+
+                }else{
                     supplier.addEventListener('change', function(evt) {
                         var supplierValue = supplier.value
                         readTextFile(yardurl, function(text) {
@@ -76,30 +79,11 @@
                                 }
                                 document.getElementById("id_yard").innerHTML = options;
                             }
-                            
-                                // var yard = document.getElementById('id_yard')
-                                // var option = document.createElement("option");
-                                // option.setAttribute('id','option')
-                                // for (var i = 0; i < data.length; i++) {
-                                //     if(data[i][0]==supplier.value){
-                                //         option.value = data[i][2];
-                                //         console.log(option.value);
-                                //         option.innerHTML = data[i][1];
-                                //         yard.appendChild(option);
-                                //     }
-                                // }
-                                // var ele = document.getElementById('option')
-                                // ele.remove()
-                            // if (supplierValue.length == 0) document.getElementById("id_yard").innerHTML = "<option></option>";
-                            // else {
-                            //     var catOptions = "";
-                            //     for (categoryId in data[supplierValue][1]) {
-                            //         catOptions += "<option>" + data[supplierValue][1] + "</option>";
-                            //     }
-                            //     document.getElementById("id_yard").innerHTML = catOptions;
-                            // }
                         })
                     });
+
+                }
+                
                 // }, false)
                 setTimeout(() => {
                 var event = new Event('change');
@@ -112,104 +96,209 @@
 
         var gr = document.getElementById('id_grade')
         if(gr){
-        gr.addEventListener("click", function() {
-            gr.addEventListener('change', function(evt) {
-                // 
-                var selectedValue = gr.value;
-                // console.log(selectedValue);
-                c = selectedValue
-                var i= 0
-                
-                var cdata,mdata;
-
-                readTextFile(costurl, function(text) {
-                    var data = JSON.parse(text);
-                    // console.log(data);
-                    cdata = data;
-                })
-                readTextFile(metalurl, function(text) {
-                    var data = JSON.parse(text);
-                    // console.log(data);
-                    mdata = data;
-                })
-
-
-
-                readTextFile(gradeurl, function(text) {
-                    var data = JSON.parse(text);
-                    // var cdata = JSON.parse(costurl);
-                    // console.log(cdata);
-                    while(c!=data[i].pk && i<data.length){
+            console.log(gr.value);
+            if(gr.value!=null){
+                // gr.addEventListener("click", function() {
+                //     gr.addEventListener('change', function(evt) {
+                        // 
+                        var selectedValue = gr.value;
+                        // console.log(selectedValue);
                         c = selectedValue
-                        i++;
-                    }
-                    if(data[i].pk==c){
-                        field = data[i].fields
-                        for(const i in field){
-                            var name = document.getElementById(i)
-                            // console.log(field[i]);
-                            if(field[i]=="SELECT" || field[i]==0){
-                                continue
-                            }else{
-                                var idf = i.charAt(i.length-1)
-                                var ele = document.getElementById(idf)
-                                // console.log( i + " " + idf);
-                                
-                                if(i=='metalc' && field[i]!=0){
-                                    ele.removeAttribute('hidden')
-                                }else if(i.startsWith('metalc') && field[i]!=0){
-                                    var def = 'metalc'+idf
-                                    ele.removeAttribute('hidden')
-
-                                }else if(i=='costc' && field[i]!=0){
-                                    var ele = document.getElementById('cost')
-                                    ele.removeAttribute('hidden')
-                                }
-                                else if(i.startsWith('costc') && field[i]!=0){
-                                    // console.log(field[i]);
-                                    var ele = document.getElementById('c' + idf)
-                                    // console.log('c' + idf);
-                                    // var def = 'costc'+idf
-                                    ele.removeAttribute('hidden')
-                                }else{
-                                    name.style.display = 'inline-block'
-                                }
-                                // console.log();
-                                if(i.startsWith('costn')){
-                                    var m = 0
-                                    var cost_value = field[i]
-                                    // console.log(cost_value);
-                                    while(cost_value!=cdata[m][0]){
-                                        m++;
-                                    }
-                                    name.innerHTML = cdata[m][1]
-                                    // console.log(cdata[0].fields);
-                                }else if(i.startsWith('metaln')){
-                                    var m = 0
-                                    var metal_value = field[i]
-                                    // console.log(metal_value);
-                                    while(metal_value!=mdata[m][0]){
-                                        m++;
-                                    }
-                                    name.innerHTML = mdata[m][1]
-                                }else{
-                                    name.innerHTML =  field[i]
-                                }
-
-                                if(i=='typeo'){
-                                        if(field[i]==1){
-                                            name.innerHTML = 'Ingot'
-                                        }else if(field[i]==2){
-                                            name.innerHTML = 'Scrap'
-                                        }
-                                    }
+                        var i= 0
+                        
+                        var cdata,mdata;
+        
+                        readTextFile(costurl, function(text) {
+                            var data = JSON.parse(text);
+                            // console.log(data);
+                            cdata = data;
+                        })
+                        readTextFile(metalurl, function(text) {
+                            var data = JSON.parse(text);
+                            // console.log(data);
+                            mdata = data;
+                        })
+        
+        
+        
+                        readTextFile(gradeurl, function(text) {
+                            var data = JSON.parse(text);
+                            // var cdata = JSON.parse(costurl);
+                            // console.log(cdata);
+                            while(c!=data[i].pk && i<data.length){
+                                c = selectedValue
+                                i++;
                             }
-                        }
-                    }
+                            if(data[i].pk==c){
+                                field = data[i].fields
+                                for(const i in field){
+                                    var name = document.getElementById(i)
+                                    // console.log(field[i]);
+                                    if(field[i]=="SELECT" || field[i]==0){
+                                        continue
+                                    }else{
+                                        var idf = i.charAt(i.length-1)
+                                        var ele = document.getElementById(idf)
+                                        // console.log( i + " " + idf);
+                                        
+                                        if(i=='metalc' && field[i]!=0){
+                                            ele.removeAttribute('hidden')
+                                        }else if(i.startsWith('metalc') && field[i]!=0){
+                                            var def = 'metalc'+idf
+                                            ele.removeAttribute('hidden')
+        
+                                        }else if(i=='costc' && field[i]!=0){
+                                            var ele = document.getElementById('cost')
+                                            ele.removeAttribute('hidden')
+                                        }
+                                        else if(i.startsWith('costc') && field[i]!=0){
+                                            // console.log(field[i]);
+                                            var ele = document.getElementById('c' + idf)
+                                            // console.log('c' + idf);
+                                            // var def = 'costc'+idf
+                                            ele.removeAttribute('hidden')
+                                        }else{
+                                            name.style.display = 'inline-block'
+                                        }
+                                        // console.log();
+                                        if(i.startsWith('costn')){
+                                            var m = 0
+                                            var cost_value = field[i]
+                                            // console.log(cost_value);
+                                            while(cost_value!=cdata[m][0]){
+                                                m++;
+                                            }
+                                            name.innerHTML = cdata[m][1]
+                                            // console.log(cdata[0].fields);
+                                        }else if(i.startsWith('metaln')){
+                                            var m = 0
+                                            var metal_value = field[i]
+                                            // console.log(metal_value);
+                                            while(metal_value!=mdata[m][0]){
+                                                m++;
+                                            }
+                                            name.innerHTML = mdata[m][1]
+                                        }else{
+                                            name.innerHTML =  field[i]
+                                        }
+        
+                                        if(i=='typeo'){
+                                                if(field[i]==1){
+                                                    name.innerHTML = 'Ingot'
+                                                }else if(field[i]==2){
+                                                    name.innerHTML = 'Scrap'
+                                                }
+                                            }
+                                    }
+                                }
+                            }
+                            
+                        });
                     
-                });
-            });
-    }, false);
+            
+
+            }else{
+                gr.addEventListener("click", function() {
+                    gr.addEventListener('change', function(evt) {
+                        // 
+                        var selectedValue = gr.value;
+                        // console.log(selectedValue);
+                        c = selectedValue
+                        var i= 0
+                        
+                        var cdata,mdata;
+        
+                        readTextFile(costurl, function(text) {
+                            var data = JSON.parse(text);
+                            // console.log(data);
+                            cdata = data;
+                        })
+                        readTextFile(metalurl, function(text) {
+                            var data = JSON.parse(text);
+                            // console.log(data);
+                            mdata = data;
+                        })
+        
+        
+        
+                        readTextFile(gradeurl, function(text) {
+                            var data = JSON.parse(text);
+                            // var cdata = JSON.parse(costurl);
+                            // console.log(cdata);
+                            while(c!=data[i].pk && i<data.length){
+                                c = selectedValue
+                                i++;
+                            }
+                            if(data[i].pk==c){
+                                field = data[i].fields
+                                for(const i in field){
+                                    var name = document.getElementById(i)
+                                    // console.log(field[i]);
+                                    if(field[i]=="SELECT" || field[i]==0){
+                                        continue
+                                    }else{
+                                        var idf = i.charAt(i.length-1)
+                                        var ele = document.getElementById(idf)
+                                        // console.log( i + " " + idf);
+                                        
+                                        if(i=='metalc' && field[i]!=0){
+                                            ele.removeAttribute('hidden')
+                                        }else if(i.startsWith('metalc') && field[i]!=0){
+                                            var def = 'metalc'+idf
+                                            ele.removeAttribute('hidden')
+        
+                                        }else if(i=='costc' && field[i]!=0){
+                                            var ele = document.getElementById('cost')
+                                            ele.removeAttribute('hidden')
+                                        }
+                                        else if(i.startsWith('costc') && field[i]!=0){
+                                            // console.log(field[i]);
+                                            var ele = document.getElementById('c' + idf)
+                                            // console.log('c' + idf);
+                                            // var def = 'costc'+idf
+                                            ele.removeAttribute('hidden')
+                                        }else{
+                                            name.style.display = 'inline-block'
+                                        }
+                                        // console.log();
+                                        if(i.startsWith('costn')){
+                                            var m = 0
+                                            var cost_value = field[i]
+                                            // console.log(cost_value);
+                                            while(cost_value!=cdata[m][0]){
+                                                m++;
+                                            }
+                                            name.innerHTML = cdata[m][1]
+                                            // console.log(cdata[0].fields);
+                                        }else if(i.startsWith('metaln')){
+                                            var m = 0
+                                            var metal_value = field[i]
+                                            // console.log(metal_value);
+                                            while(metal_value!=mdata[m][0]){
+                                                m++;
+                                            }
+                                            name.innerHTML = mdata[m][1]
+                                        }else{
+                                            name.innerHTML =  field[i]
+                                        }
+        
+                                        if(i=='typeo'){
+                                                if(field[i]==1){
+                                                    name.innerHTML = 'Ingot'
+                                                }else if(field[i]==2){
+                                                    name.innerHTML = 'Scrap'
+                                                }
+                                            }
+                                    }
+                                }
+                            }
+                            
+                        });
+                    });
+            }, false);
+            }
+
+        
     setTimeout(() => {
         var event = new Event('change');
         gr.dispatchEvent(event);
@@ -219,7 +308,7 @@
 })
 
     
-    var gr = document.getElementById('id_grade')
+    // var gr = document.getElementById('id_grade')
     var btn = document.getElementById('add-metal')
     
     if(btn){
