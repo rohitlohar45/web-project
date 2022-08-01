@@ -58,7 +58,7 @@
         if(supplier){
             
                 var supplier = document.getElementById('id_supplier')
-                console.log(document.getElementById("id_yard").value);
+                // console.log(document.getElementById("id_yard").value);
                 if(document.getElementById("id_yard").value!=""){
 
                 }else{
@@ -97,10 +97,11 @@
         var gr = document.getElementById('id_grade')
         if(gr){
             console.log(gr.value);
-            if(gr.value!=null){
+            if(gr.value!=""){
                 // gr.addEventListener("click", function() {
                 //     gr.addEventListener('change', function(evt) {
                         // 
+                        console.log(gr.value);
                         var selectedValue = gr.value;
                         // console.log(selectedValue);
                         c = selectedValue
